@@ -1,10 +1,12 @@
 import React from 'react'
+import AppStore from './Flux/Stores/AppStore'
 import { Route } from 'react-router-dom'
 import Home from './Containers/Pages/Home'
 import Blog from './Containers/Pages/Blog'
 import About from './Containers/Pages/About'
 import Destinations from './Containers/Pages/Destinations'
 import Venues from './Containers/Pages/Venues'
+import Account from './Containers/Pages/Account'
 import Login from './Containers/Auth/Login'
 import SignUp from './Containers/Auth/SignUp'
 
@@ -43,15 +45,22 @@ const routesArray = [
     path: '/signup',
     exact: true,
     component: SignUp
+  },
+  {
+    path: '/account/:id',
+    exact: true,
+    component: Account
   }
 ]
+
+const {data} = AppStore
 
 export default(
   
     <div>
       {routesArray.map((route, i) => (
         <Route exact path={route.path} render={(props) => (
-          <route.component key={i} {...props} />
+          <route.component key={i} {...props} {...data}/>
         )}/>
         ))}
     </div>
