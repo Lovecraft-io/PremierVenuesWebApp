@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
-import { Container, Header } from 'semantic-ui-react'
 import AppDispatcher from '../../Flux/Dispatchers/AppDispatcher'
 import { Carousel } from '../../Components/Carousel'
+import EventForm from '../../Components/EventForm'
+import { Layout } from 'antd'
+import './pages.css'
+const { Header, Footer, Sider, Content } = Layout
 
 export default class Home extends Component {
   constructor(props) {
@@ -15,19 +18,7 @@ export default class Home extends Component {
   componentWillMount() {
     this.getPageData()
   }
-  // componentDidMount() {
-  //   const {currentPage} = this.props
-  //   if(currentPage) {
-  //     const {modules, pageContent, pageHeader} = currentPage
-  //     console.log(modules, pageContent, pageHeader)
-  //     const carouselMedia = modules[0].fields
-  //     this.setState({
-  //       carouselMedia:carouselMedia,
-  //       pageHeader:pageHeader,
-  //       pageContent:pageContent
-  //     })
-  //   }
-  // }
+
   componentDidUpdate(prevProps, prevState) {
     if (this.props.currentPage) {
       const { currentPage } = this.props
@@ -55,10 +46,14 @@ export default class Home extends Component {
   render() {
     const { pageContent, pageHeader, carouselMedia } = this.state
     return (
-      <div text>
-        <Header as="h2">{pageHeader}</Header>
-        <Carousel media={carouselMedia}/>
-      </div>
+        <div>  
+          <section className="page-section">
+            <EventForm />
+          </section>
+          <section className="page-section">
+          <Carousel media={carouselMedia}/>
+          </section>
+        </div>
     )
   }
 }
