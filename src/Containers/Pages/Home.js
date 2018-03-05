@@ -2,9 +2,7 @@ import React, { Component } from 'react'
 import AppDispatcher from '../../Flux/Dispatchers/AppDispatcher'
 import { Carousel } from '../../Components/Carousel'
 import EventForm from '../../Components/EventForm'
-import { Layout } from 'antd'
 import './pages.css'
-const { Header, Footer, Sider, Content } = Layout
 
 export default class Home extends Component {
   constructor(props) {

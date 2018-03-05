@@ -15,6 +15,23 @@ export default class Loader extends Component {
   componentDidMount() {
     console.log(this.props)
   }
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log(nextProps)
+    if(this.props !== nextProps) {
+      return true
+    } else {
+      return false
+    }
+    
+  }
+  componentDidUpdate(prevProps, prevState) {
+    console.log(prevProps)
+    console.log(this.props)
+    const { history } = this.props
+    if(this.props.currentUser && this.props.currentUser.loggedIn) {
+      history.push('/')
+    }
+  }
 
   render() {
     return (

@@ -4,15 +4,15 @@ import AppDispatcher from './Flux/Dispatchers/AppDispatcher'
 import AppStore from './Flux/Stores/AppStore'
 import { SiteMenu } from './Components/SiteMenu'
 import routes from './routes'
-import { Layout } from 'antd'
-import 'antd/dist/antd.css'
+import 'semantic-ui-css/semantic.min.css'
 import './App.css'
-const { Header, Footer, Sider, Content } = Layout
+
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {}
+    this.handleLinkedinAuth = this.handleLinkedinAuth.bind(this)
   }
 
   componentDidMount() {
@@ -32,26 +32,23 @@ class App extends Component {
   _onChange() {
     this.setState(AppStore)
   }
+  handleLinkedinAuth() {
+    AppDispatcher.dispatch({action: 'handle-linkedin-auth'})
+  } 
 
   render() {
     const { data } = AppStore
     const { siteNav } = data
     if (!data.ready) {
       this.getStore()
-      return "Loading"
+      return 'Loading'
     } else {
       return (
         <BrowserRouter {...data}>
-          <Layout>
-            <Header style={{ position: 'fixed', width: '100%' }}>
-              <div className="logo" ><Link to='/'>Premier Venues</Link></div>
-              <SiteMenu links={siteNav} />
-            </Header>
-            <Content style={{ marginTop: '85px' }}>  
+          <div>
+            <SiteMenu handleLinkedinAuth={this.handleLinkedinAuth} links={siteNav} />
             {routes}
-            </Content>
-            
-          </Layout>
+          </div>
         </BrowserRouter>
       )
     }

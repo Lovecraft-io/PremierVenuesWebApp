@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom'
 import _ from 'lodash'
 import moment from 'moment'
 import Auth from '../../Containers/Auth/Auth'
-import {DATABASE_FUNCTIONS} from '../../Database/databaseFunctions'
+import { DATABASE_FUNCTIONS } from '../../Database/databaseFunctions'
 const auth = new Auth()
 
 export const getStore = () => {
@@ -41,18 +41,24 @@ export const getStore = () => {
   })
 }
 
-export const getPageData = (page_slug) => {
-  const {data} = AppStore
-  const {pages} = data
+export const getPageData = page_slug => {
+  const { data } = AppStore
+  const { pages } = data
   const page = pages[page_slug]
   console.log(page)
   AppStore.data.currentPage = page
   AppStore.emitChange()
 }
 
-const createUser = (profile) => {
-  console.log(profile)
-  DATABASE_FUNCTIONS.addNewUser(profile)
+const createUser = async profile => {
+  let status = await DATABASE_FUNCTIONS.addNewUser(profile)
+  console.log(status)
+  if (status) {
+    AppStore.data.currentUser = { ...profile }
+    AppStore.data.currentUser.loggedIn = true
+    AppStore.emitChange()
+    return <Redirect to="/" />
+  }
 }
 
 export const handleLinkedinAuth = () => {
@@ -62,13 +68,22 @@ export const handleLinkedinAuth = () => {
 export const authenticateAccessToken = () => {
   console.log('in Actions #authenticateAccessToken')
   const accessToken = auth.getAccessToken()
-  if(accessToken) {
-    auth.getProfile((err, profile) => {
-      if(err) {
+  if (accessToken) {
+    auth.getProfile(async (err, profile) => {
+      if (err) {
         console.log(err)
       }
+      const existingUser = await DATABASE_FUNCTIONS.checkForExistingUser(profile)
       console.log(profile)
-      createUser(profile)
+      console.log(existingUser)
+      if (!existingUser) {
+        createUser(profile)
+      } else {
+        AppStore.data.currentUser = { ...profile }
+        AppStore.data.currentUser.loggedIn = true
+        AppStore.emitChange()
+        return <Redirect to="/" />
+      }
     })
   }
 }

@@ -93,24 +93,6 @@ textarea {
     padding: 0.2em 0;
 }
 
-/* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /* ==========================================================================
@@ -290,23 +272,9 @@ textarea {
     }
 }
 
-.ant-layout, .ant-layout-header  {
-    background-color: white;
+a {
+    color: #333;
 }
-.ant-menu-horizontal {
-    border: none;
-}
-.ant-layout-header {
-
-}
-.logo {
-    width: 120px;
-    height: 31px;
-    background: rgba(255,255,255,.2);  
-    margin: 16px 24px 16px 0;
-    float: left;
-    color: black;
-  }
 /* Site Navigation */
 #site-header {
 
