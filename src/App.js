@@ -39,6 +39,9 @@ class App extends Component {
   render() {
     const { data } = AppStore
     const { siteNav } = data
+    const loggedIn = data.currentUser ? data.currentUser.loggedIn : false
+    console.log(loggedIn)
+    console.log(data)
     if (!data.ready) {
       this.getStore()
       return 'Loading'
@@ -46,7 +49,7 @@ class App extends Component {
       return (
         <BrowserRouter {...data}>
           <div>
-            <SiteMenu handleLinkedinAuth={this.handleLinkedinAuth} links={siteNav} />
+            <SiteMenu loggedIn={loggedIn} handleLinkedinAuth={this.handleLinkedinAuth} links={siteNav} />
             {routes}
           </div>
         </BrowserRouter>

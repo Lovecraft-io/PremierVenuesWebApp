@@ -29,7 +29,8 @@ export const getStore = () => {
       items,
       item => item.sys.contentType.sys.id == 'destination'
     )
-    const siteNav = pages.map(page => page.fields.pageTitle.split(' ')[0])
+    let siteNav = []
+    pages.forEach(page => {if(page.fields.pageTitle !== 'Landing Page') {siteNav.push(page.fields.pageTitle.split(' ')[0])}})
 
     AppStore.data.siteNav = siteNav
     AppStore.data.pages = {}
