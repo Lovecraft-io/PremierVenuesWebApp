@@ -7,11 +7,6 @@ import { Link } from 'react-router-dom'
 const logInOrOutButton = (props) => props.loggedIn ? <Menu.Item><span onClick={() => props.handleLinkedinAuth()}>Log Out</span></Menu.Item> : <Menu.Item><span onClick={() => props.handleLinkedinAuth()}>Login</span></Menu.Item>
 const signUpButton = (props) => props.loggedIn ? null : <Menu.Item><span onClick={() => props.handleLinkedinAuth()}>Sign Up</span></Menu.Item>
 export const SiteMenu = props => {
-  console.log(props)
-  const signUpHTML = signUpButton(props)
-  console.log(signUpHTML)
-  
-  console.log(logInOrOutButton)
   return (
     <Menu pointing secondary>
       <Menu.Item>
