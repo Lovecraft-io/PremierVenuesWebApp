@@ -10,6 +10,7 @@ import Account from './Containers/Pages/Account'
 import Login from './Containers/Auth/Login'
 import SignUp from './Containers/Auth/SignUp'
 import Loader from './Containers/Auth/Loader'
+import Auth from './Containers/Auth/Auth'
 
 const routesArray = [
   {
@@ -60,15 +61,28 @@ const routesArray = [
 ]
 
 const {data} = AppStore
+const auth = new Auth()
+
+const handleAuthentication = (nextState, replace) => {
+  if (/access_token|id_token|error/.test(nextState.location.hash)) {
+    auth.handleAuthentication();
+  }
+}
+
 
 export default(
   
-    <div>
+  <div>
       {routesArray.map((route, i) => (
-        <Route exact path={route.path} render={(props) => (
-          <route.component key={i} {...props} {...data}/>
-        )}/>
+        <Route exact path={route.path} render={(props) => {
+            if(route.path === '/callback/') {
+              handleAuthentication(props)
+              return <route.component key={i} {...props} {...data}/>
+            } else {
+              return <route.component key={i} {...props} {...data}/>
+            }
+          }
+        }/>
         ))}
     </div>
   )
-     

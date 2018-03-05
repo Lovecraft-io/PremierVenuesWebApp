@@ -17,7 +17,8 @@
     "react-autobind": "^1.0.6",
     "react-dom": "^16.2.0",
     "react-linkedin-login": "^1.0.3",
-    "react-router-dom": "^4.2.2"
+    "react-router-dom": "^4.2.2",
+    "uuid": "^3.2.1"
   },
   "devDependencies": {
     "react-scripts": "1.1.1"

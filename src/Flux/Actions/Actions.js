@@ -1,9 +1,12 @@
+import React from 'react'
 import AppStore from '../Stores/AppStore'
 import * as Contentful from 'contentful'
 import Axios from 'axios'
+import { Redirect } from 'react-router-dom'
 import _ from 'lodash'
 import moment from 'moment'
 import Auth from '../../Containers/Auth/Auth'
+import {DATABASE_FUNCTIONS} from '../../Database/databaseFunctions'
 const auth = new Auth()
 
 export const getStore = () => {
@@ -41,38 +44,15 @@ export const getStore = () => {
 export const getPageData = (page_slug) => {
   const {data} = AppStore
   const {pages} = data
-  console.log(pages)
-  console.log(page_slug)
   const page = pages[page_slug]
   console.log(page)
-
   AppStore.data.currentPage = page
   AppStore.emitChange()
 }
 
-const getAccessToken = () => {
-  const accessToken = localStorage.getItem('access_token')
-  if (!accessToken) {
-    throw new Error('No Access Token found')
-  }
-  return accessToken
-}
-const getProfile = cb => {
-  let accessToken = getAccessToken()
-  auth.auth0.client.userInfo(accessToken, (err, profile) => {
-    if (profile) {
-      console.log(profile)
-    }
-    cb(err, profile)
-  })
-}
-const addUserToDatabase = (err, user) => {
-  console.log('Add use to the database')
-  console.log(user)
-}
-const createUser = () => {
-  console.log('Creating user')
-  getProfile(addUserToDatabase)
+const createUser = (profile) => {
+  console.log(profile)
+  DATABASE_FUNCTIONS.addNewUser(profile)
 }
 
 export const handleLinkedinAuth = () => {
@@ -81,8 +61,16 @@ export const handleLinkedinAuth = () => {
 }
 export const authenticateAccessToken = () => {
   console.log('in Actions #authenticateAccessToken')
-  auth.handleAuthentication()
-  createUser()
+  const accessToken = auth.getAccessToken()
+  if(accessToken) {
+    auth.getProfile((err, profile) => {
+      if(err) {
+        console.log(err)
+      }
+      console.log(profile)
+      createUser(profile)
+    })
+  }
 }
 
 export const createUserWithLinkedIn = data => {}
