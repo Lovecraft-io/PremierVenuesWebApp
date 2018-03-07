@@ -279,9 +279,11 @@ a {
 #site-header {
 
 }
-#site-nav {
-    float: right;
-  border-radius: 0;
+#site-menu {
+  
+}
+#site-menu .right.menu .item .text {
+    margin-top: 0;
 }
 #site-nav li {
   position: relative;

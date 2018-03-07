@@ -38,7 +38,7 @@ class App extends Component {
 
   render() {
     const { data } = AppStore
-    const { siteNav } = data
+    const { siteNav, venues, destinations } = data
     const loggedIn = data.currentUser ? data.currentUser.loggedIn : false
     console.log(loggedIn)
     console.log(data)
@@ -49,7 +49,7 @@ class App extends Component {
       return (
         <BrowserRouter {...data}>
           <div>
-            <SiteMenu loggedIn={loggedIn} handleLinkedinAuth={this.handleLinkedinAuth} links={siteNav} />
+            <SiteMenu loggedIn={loggedIn} handleLinkedinAuth={this.handleLinkedinAuth} venues={venues} destinations={destinations} links={siteNav} />
             {routes}
           </div>
         </BrowserRouter>

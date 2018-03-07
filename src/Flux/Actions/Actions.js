@@ -16,25 +16,37 @@ export const getStore = () => {
   })
   CMS.getEntries().then(response => {
     const { items } = response
-    const pages = _.filter(items, item => item.sys.contentType.sys.id == 'page')
+    const pages = _.filter(
+      items,
+      item => item.sys.contentType.sys.id == 'page'
+    ).map(page => (page = { ...page.fields }))
     const blogPosts = _.filter(
       items,
       item => item.sys.contentType.sys.id == 'blogPost'
-    )
+    ).map(blogPost => (blogPost = { ...blogPost.fields }))
+
     const venues = _.filter(
       items,
       item => item.sys.contentType.sys.id == 'venue'
-    )
+    ).map(venue => (venue = { ...venue.fields }))
+
     const destinations = _.filter(
       items,
       item => item.sys.contentType.sys.id == 'destination'
-    )
+    ).map(destination => (destination = { ...destination.fields }))
     let siteNav = []
-    pages.forEach(page => {if(page.fields.pageTitle !== 'Landing Page') {siteNav.push(page.fields.pageTitle.split(' ')[0])}})
+    pages.forEach(page => {
+      if (page.pageTitle !== 'Landing Page') {
+        siteNav.push(page.pageTitle.split(' ')[0])
+      }
+    })
 
     AppStore.data.siteNav = siteNav
     AppStore.data.pages = {}
-    pages.forEach(page => (AppStore.data.pages[page.fields.pageTitle] = page))
+    pages.forEach(page => (AppStore.data.pages[page.pageTitle] = page))
+    AppStore.data.venues = venues
+    AppStore.data.destinations = destinations
+    AppStore.data.blogPosts = blogPosts
     AppStore.data.ready = true
     console.log(AppStore.data)
 
@@ -47,7 +59,7 @@ export const getPageData = page_slug => {
   const { pages } = data
   const page = pages[page_slug]
   console.log(page)
-  AppStore.data.currentPage = page
+  AppStore.data.currentPage = page.fields
   AppStore.emitChange()
 }
 
@@ -74,7 +86,9 @@ export const authenticateAccessToken = () => {
       if (err) {
         console.log(err)
       }
-      const existingUser = await DATABASE_FUNCTIONS.checkForExistingUser(profile)
+      const existingUser = await DATABASE_FUNCTIONS.checkForExistingUser(
+        profile
+      )
       console.log(profile)
       console.log(existingUser)
       if (!existingUser) {
@@ -87,6 +101,16 @@ export const authenticateAccessToken = () => {
       }
     })
   }
+}
+
+export const getDestinationData = (destination) => {
+  console.log(destination)
+  const {destinations} = AppStore.data 
+  const currentDestination = _.find(destinations, (d) => d.destinationName === destination)
+  console.log(currentDestination)
+  AppStore.data.currentDestination = currentDestination
+  AppStore.emitChange()
+ 
 }
 
 export const createUserWithLinkedIn = data => {}

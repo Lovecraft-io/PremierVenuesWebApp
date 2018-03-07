@@ -21,8 +21,8 @@ export default class Home extends Component {
     if (this.props.currentPage) {
       const { currentPage } = this.props
       console.log(currentPage)
-      if (currentPage.fields.pageHeader !== this.state.pageHeader) {
-        const { modules, pageContent, pageHeader } = currentPage.fields
+      if (currentPage.pageHeader !== this.state.pageHeader) {
+        const { modules, pageContent, pageHeader } = currentPage
         console.log(modules, pageContent, pageHeader)
         const {carouselMedia} = modules[0].fields
         this.setState({

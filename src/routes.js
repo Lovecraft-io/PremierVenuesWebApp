@@ -3,9 +3,12 @@ import AppStore from './Flux/Stores/AppStore'
 import { Route } from 'react-router-dom'
 import Home from './Containers/Pages/Home/Home'
 import Blog from './Containers/Pages/Blog/Blog'
+import {BlogPost} from './Containers/Pages/Blog/BlogPost'
 import About from './Containers/Pages/About/About'
 import Destinations from './Containers/Pages/Destinations/Destinations'
+import DestinationSpecific from './Containers/Pages/Destinations/DestinationSpecific'
 import Venues from './Containers/Pages/Venues/Venues'
+import VenueSpecific from './Containers/Pages/Venues/VenueSpecific'
 import Account from './Containers/Pages/Account/Account'
 import Login from './Containers/Auth/Login'
 import SignUp from './Containers/Auth/SignUp'
@@ -24,6 +27,11 @@ const routesArray = [
     component: Blog
   },
   {
+    path: '/blog/:blogPost',
+    exact: true,
+    component: BlogPost
+  },
+  {
     path: '/about',
     exact: true,
     component: About
@@ -34,9 +42,19 @@ const routesArray = [
     component: Destinations
   },
   {
+    path: '/destinations/:destination',
+    exact: true,
+    component: DestinationSpecific
+  },
+  {
     path: '/venues',
     exact: true,
     component: Venues
+  },
+  {
+    path: '/venues:venueName',
+    exact: true,
+    component: VenueSpecific
   },
   {
     path: '/login',
