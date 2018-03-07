@@ -9,6 +9,7 @@ const signUpButton = (props) => props.loggedIn ? null : <Menu.Item><span onClick
 const dropDownMenu = (title, links) => (
   <Dropdown pointing className='link item' text={title}>
       <Dropdown.Menu>
+        <Dropdown.Item><Link to={`/${title.toLowerCase()}`}>All {title}</Link></Dropdown.Item>
         {links.map((link) => (
           <Dropdown.Item>
             <Link to={link.venueTitle ? `venues/${link.venueTitle }` : `destinations/${link.destinationName }`}>{link.venueTitle ? link.venueTitle : link.destinationName}</Link>

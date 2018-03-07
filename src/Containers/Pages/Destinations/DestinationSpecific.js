@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import AppDispatcher from '../../../Flux/Dispatchers/AppDispatcher'
 import _ from 'lodash'
-import '../pages.css'
+import './destination.css'
 
 export default class Home extends Component {
   constructor(props) {
@@ -29,10 +29,20 @@ export default class Home extends Component {
     let scrollSensitivitySetting = 30 //Increase/decrease this number to change sensitivity to trackpad gestures (up = less sensitive; down = more sensitive)
     let slideDurationSetting = 600 //Amount of time for which slide is "locked"
     let currentSlideNumber = 0
-    let totalSlideNumber = document.querySelectorAll('.destination_background').length
+    let slideNumber = document.querySelectorAll('.destination_background').length
     console.log(totalSlideNumber)
+    this.setState({
+      totalSlideNumber: slideNumber
+    })
+    const {totalSlideNumber} = this.state
+    if(totalSlideNumber) {
+      this.parallax(isFirefox, totalSlideNumber, ticking, isIe, scrollSensitivitySetting, slideDurationSetting, currentSlideNumber)
+    }
 
-    // ------------- DETERMINE DELTA/SCROLL DIRECTION ------------- //
+    
+   
+  }
+  parallax(isFirefox, totalSlideNumber, ticking, isIe, scrollSensitivitySetting, slideDurationSetting, currentSlideNumber) {
     const parallaxScroll = (evt) => {
       let delta 
       if (isFirefox) {
@@ -87,13 +97,13 @@ export default class Home extends Component {
     const nextItem = () => {
       let $previousSlide = document.querySelectorAll('.destination_background')[currentSlideNumber - 1]
       $previousSlide.classList.remove('up-scroll')
-      $previousSlide.classList.addClass('down-scroll')
+      $previousSlide.classList.add('down-scroll')
     }
 
     const previousItem = () => {
       let $currentSlide = document.querySelectorAll('.destination_background')[currentSlideNumber]
       $currentSlide.classList.remove('down-scroll')
-      $currentSlide.classLis.addClass('up-scroll')
+      $currentSlide.classLis.add('up-scroll')
     }
   }
   getDestinationData(destination) {
@@ -110,22 +120,20 @@ export default class Home extends Component {
           <section className="destination_background">
             <div className="destination_content-wrapper">
               <p className="destination_content-title">
-                Full Page Parallax Effect
+                
               </p>
               <p className="destination_content-subtitle">
-                Scroll down and up to see the effect!
+                
               </p>
             </div>
           </section>
           <section className="destination_background">
             <div className="destination_content-wrapper">
               <p className="destination_content-title">
-                Cras lacinia non eros nec semper.
+                
               </p>
               <p className="destination_content-subtitle">
-                ClassName adestination_ptent taciti sociosqu ad litora torquent
-                per conubia nostra, per inceptos himenaeos. Cras ut massa mattis
-                nibh semper pretium.
+             
               </p>
             </div>
           </section>
