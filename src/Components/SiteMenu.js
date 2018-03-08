@@ -14,7 +14,7 @@ const dropDownMenu = (title, links) => (
         <Dropdown.Item><Link to={`/${encodeURI(title.toLowerCase())}`}>All {title}</Link></Dropdown.Item>
         {links.map((link) => (
           <Dropdown.Item>
-            <Link to={link.venueTitle ? `venues/${link.venueTitle }` : `destinations/${link.destinationName }`}>{link.venueTitle ? link.venueTitle : link.destinationName}</Link>
+            <Link to={link.venueTitle ? `/venues/${link.venueTitle }` : `/destinations/${link.destinationName }`}>{link.venueTitle ? link.venueTitle : link.destinationName}</Link>
           </Dropdown.Item>
         ))}
       </Dropdown.Menu>
@@ -29,13 +29,13 @@ const renderNavItems = (link, venues, destinations) => {
     if(link === 'Account' && (data.currentUser && data.currentUser.loggedIn) ) {
       return (
         <Menu.Item>
-        <Link to={encodeURI(link.toLowerCase())}>{link}</Link>
+        <Link to={'/' + encodeURI(link.toLowerCase())}>{link}</Link>
       </Menu.Item>
       )
     } else if (link !== 'Account') {
       return (
         <Menu.Item>
-        <Link to={encodeURI(link.toLowerCase())}>{link}</Link>
+        <Link to={'/' + encodeURI(link.toLowerCase())}>{link}</Link>
       </Menu.Item>
       )
     }

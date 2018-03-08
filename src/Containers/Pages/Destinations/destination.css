@@ -27,7 +27,7 @@
   background-color: rgba(0, 0, 0, 0.3);
 }
 .destination_background:first-child {
-  background-image: url(https://s8.postimg.org/lf2udl5np/4_Aihmii.jpg);
+  /* background-image: url(https://s8.postimg.org/lf2udl5np/4_Aihmii.jpg); */
   -webkit-transform: translateY(-15vh);
           transform: translateY(-15vh);
 }
@@ -36,10 +36,10 @@
           transform: translateY(15vh);
 }
 .destination_background:nth-child(2) {
-  background-image: url(https://s8.postimg.org/ow4wgk4px/ugqti_Lg.jpg);
+  /* background-image: url(https://s8.postimg.org/ow4wgk4px/ugqti_Lg.jpg); */
 }
 .destination_background:nth-child(3) {
-  background-image: url(https://s8.postimg.org/grwsbtiat/x_ZMOBTj.jpg);
+  /* background-image: url(https://s8.postimg.org/grwsbtiat/x_ZMOBTj.jpg); */
 }
 
 /* Set stacking context of slides */

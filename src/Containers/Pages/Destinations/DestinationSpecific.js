@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import AppDispatcher from '../../../Flux/Dispatchers/AppDispatcher'
+import AppStore from '../../../Flux/Stores/AppStore'
 import _ from 'lodash'
 import './destination.css'
 
@@ -114,17 +115,18 @@ export default class DestinationSpecific extends Component {
   }
 
   render() {
+    const {currentDestination} = AppStore.data
+    console.log(currentDestination)
+
     return (
       <div id="DestinationSpecific">
         <div className="destination_container">
-          <section className="destination_background">
+          <section className="destination_background" style={{backgroundImage: `url(${currentDestination.destinationFeaturedImage.fields.file.url})`}}>
             <div className="destination_content-wrapper">
               <p className="destination_content-title">
-                
+                {currentDestination.destinationName}
               </p>
-              <p className="destination_content-subtitle">
-                
-              </p>
+              <p className="destination_content-subtitle">{currentDestination.destinationDescription}</p>
             </div>
           </section>
           <section className="destination_background">

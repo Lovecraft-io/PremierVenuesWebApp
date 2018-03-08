@@ -86,17 +86,17 @@ export default class DestinationSpecific extends Component {
             }}
           />
         </Container>
-        <div className="content">
-          <div className="content">
-            <div className="date">
+        <div className="venue_specific_main">
+          <div className="venue_specific_content">
+            <div className="venue_specific_date">
               <span>April</span>
-              <span className="day">6</span>
+              <span className="venue_specific_day">6</span>
             </div>
-            <div className="article">
+            <div className="venue_specific_article">
               <h2><span>{currentVenue ? currentVenue.venueTitle : null}</span></h2>
       
-              <p className="firstpara">
-                <span className="firstcharacter"></span>
+              <p className="venue_specific_firstpara">
+                <span className="venue_specific_firstcharacter"></span>
                 {currentVenue.venueBluePrintDetails}
               </p>
               <p>
