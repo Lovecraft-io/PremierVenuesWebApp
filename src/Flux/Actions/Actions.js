@@ -114,4 +114,14 @@ export const getDestinationData = (destination) => {
  
 }
 
+export const getVenueData = (venue) => {
+  console.log(venue)
+  const {venues} = AppStore.data
+  const currentVenue = _.find(venues, (d) => d.venueTitle === venue)
+  console.log(currentVenue)
+
+  AppStore.data.currentVenue = currentVenue
+  AppStore.emitChange()
+}
+
 export const createUserWithLinkedIn = data => {}

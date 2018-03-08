@@ -3,7 +3,7 @@ import AppDispatcher from '../../../Flux/Dispatchers/AppDispatcher'
 import _ from 'lodash'
 import './destination.css'
 
-export default class Home extends Component {
+export default class DestinationSpecific extends Component {
   constructor(props) {
     super(props)
     this.state = {}

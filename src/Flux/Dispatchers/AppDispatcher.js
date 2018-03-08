@@ -5,7 +5,8 @@ import {
   handleLinkedinAuth,
   authenticateAccessToken,
   getPageData,
-  getDestinationData
+  getDestinationData,
+  getVenueData
 } from '../Actions/Actions'
 
 const AppDispatcher = new Dispatcher()
@@ -32,6 +33,10 @@ AppDispatcher.register(payload => {
 
     case 'get-destination-data':
       getDestinationData(payload.destination)
+      break
+
+    case 'get-venue-data':
+      getVenueData(payload.venue)
       break
 
     case 'create-user-linkedin':

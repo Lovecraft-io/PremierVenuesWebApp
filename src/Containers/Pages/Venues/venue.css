@@ -59,3 +59,13 @@
   
   width: 60%;
 }
+
+#VenueSpecific {
+
+}
+#VenueSpecific .ui.fluid.container {
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}

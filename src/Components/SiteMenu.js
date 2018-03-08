@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Menu, Dropdown } from 'semantic-ui-react'
 import AppDispatcher from '../Flux/Dispatchers/AppDispatcher'
 import { Link } from 'react-router-dom'
+import AppStore from '../Flux/Stores/AppStore'
+const {data} = AppStore
 
 
 const logInOrOutButton = (props) => props.loggedIn ? <Menu.Item><span onClick={() => props.handleLinkedinAuth()}>Log Out</span></Menu.Item> : <Menu.Item><span onClick={() => props.handleLinkedinAuth()}>Login</span></Menu.Item>
@@ -9,7 +11,7 @@ const signUpButton = (props) => props.loggedIn ? null : <Menu.Item><span onClick
 const dropDownMenu = (title, links) => (
   <Dropdown pointing className='link item' text={title}>
       <Dropdown.Menu>
-        <Dropdown.Item><Link to={`/${title.toLowerCase()}`}>All {title}</Link></Dropdown.Item>
+        <Dropdown.Item><Link to={`/${encodeURI(title.toLowerCase())}`}>All {title}</Link></Dropdown.Item>
         {links.map((link) => (
           <Dropdown.Item>
             <Link to={link.venueTitle ? `venues/${link.venueTitle }` : `destinations/${link.destinationName }`}>{link.venueTitle ? link.venueTitle : link.destinationName}</Link>
@@ -24,11 +26,19 @@ const renderNavItems = (link, venues, destinations) => {
   } else if (link === 'Destinations') {
     return dropDownMenu('Destinations', destinations)    
   } else {
-    return (
-      <Menu.Item>
-      <Link to={link.toLowerCase()}>{link}</Link>
-    </Menu.Item>
-    )
+    if(link === 'Account' && (data.currentUser && data.currentUser.loggedIn) ) {
+      return (
+        <Menu.Item>
+        <Link to={encodeURI(link.toLowerCase())}>{link}</Link>
+      </Menu.Item>
+      )
+    } else if (link !== 'Account') {
+      return (
+        <Menu.Item>
+        <Link to={encodeURI(link.toLowerCase())}>{link}</Link>
+      </Menu.Item>
+      )
+    }
   }
 }
 

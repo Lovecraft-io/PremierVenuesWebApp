@@ -1,6 +1,6 @@
 import React from 'react'
 import AppStore from './Flux/Stores/AppStore'
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import Home from './Containers/Pages/Home/Home'
 import Blog from './Containers/Pages/Blog/Blog'
 import {BlogPost} from './Containers/Pages/Blog/BlogPost'
@@ -52,7 +52,7 @@ const routesArray = [
     component: Venues
   },
   {
-    path: '/venues:venueName',
+    path: '/venues/:venueName',
     exact: true,
     component: VenueSpecific
   },
@@ -90,7 +90,7 @@ const handleAuthentication = (nextState, replace) => {
 
 export default(
   
-  <div>
+  <Switch>
       {routesArray.map((route, i) => (
         <Route exact path={route.path} render={(props) => {
             if(route.path === '/callback/') {
@@ -102,5 +102,5 @@ export default(
           }
         }/>
         ))}
-    </div>
+    </Switch>
   )
