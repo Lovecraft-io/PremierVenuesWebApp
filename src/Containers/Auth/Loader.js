@@ -3,15 +3,7 @@ import AppDispatcher from '../../Flux/Dispatchers/AppDispatcher'
 import './auth.css'
 
 export default class Loader extends Component {
-  componentWillMount() {
-    console.log(this.props)
-    const { hash } = this.props.location
-    if (hash.includes('access_token')) {
-      AppDispatcher.dispatch({
-        action: 'authenticate-access-token'
-      })
-    }
-  }
+  componentWillMount() {}
   componentDidMount() {
     console.log(this.props)
   }
@@ -28,6 +20,11 @@ export default class Loader extends Component {
     console.log(prevProps)
     console.log(this.props)
     const { history } = this.props
+    if(this.props.location.hash && this.props.location.hash.includes('#access_token')) {
+      AppDispatcher.dispatch({
+        action: 'authenticate-access-token'
+      })
+    }
     if(this.props.currentUser && this.props.currentUser.loggedIn) {
       history.push('/')
     }

@@ -3,6 +3,7 @@ import { BrowserRouter, Link } from 'react-router-dom'
 import AppDispatcher from './Flux/Dispatchers/AppDispatcher'
 import AppStore from './Flux/Stores/AppStore'
 import { SiteMenu } from './Components/SiteMenu'
+import Loader from './Containers/Auth/Loader'
 import routes from './routes'
 import 'semantic-ui-css/semantic.min.css'
 import './App.css'
@@ -44,7 +45,7 @@ class App extends Component {
     console.log(data)
     if (!data.ready) {
       this.getStore()
-      return 'Loading'
+      return <Loader />
     } else {
       return (
         <BrowserRouter {...data}>

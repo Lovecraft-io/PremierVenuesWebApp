@@ -34,6 +34,7 @@ export const getStore = () => {
       items,
       item => item.sys.contentType.sys.id == 'destination'
     ).map(destination => (destination = { ...destination.fields }))
+    
     let siteNav = []
     pages.forEach(page => {
       if (page.pageTitle !== 'Landing Page') {
@@ -43,7 +44,7 @@ export const getStore = () => {
 
     AppStore.data.siteNav = siteNav
     AppStore.data.pages = {}
-    pages.forEach(page => (AppStore.data.pages[page.pageTitle] = page))
+    pages.forEach(page => (AppStore.data.pages[page.pageSlug] = page))
     AppStore.data.venues = venues
     AppStore.data.destinations = destinations
     AppStore.data.blogPosts = blogPosts
@@ -59,7 +60,7 @@ export const getPageData = page_slug => {
   const { pages } = data
   const page = pages[page_slug]
   console.log(page)
-  AppStore.data.currentPage = page.fields
+  AppStore.data.currentPage = page
   AppStore.emitChange()
 }
 

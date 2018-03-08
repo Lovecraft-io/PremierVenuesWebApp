@@ -14,39 +14,24 @@ export default class Home extends Component {
     }
   }
   componentWillMount() {
-    this.getPageData()
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (this.props.currentPage) {
-      const { currentPage } = this.props
-      console.log(currentPage)
-      if (currentPage.pageHeader !== this.state.pageHeader) {
-        const { modules, pageContent, pageHeader } = currentPage
-        console.log(modules, pageContent, pageHeader)
-        const {carouselMedia} = modules[0].fields
-        this.setState({
-          carouselMedia: carouselMedia,
-          pageHeader: pageHeader,
-          pageContent: pageContent
-        })
-      }
-    }
-  }
-
-  getPageData() {
-    AppDispatcher.dispatch({
-      action: 'get-page-data',
-      page_slug: 'Landing Page'
+    // this.getPageData()
+    const {Home} = this.props.pages
+    const { modules, pageContent, pageHeader } = Home
+    const {carouselMedia} = modules[0].fields
+    this.setState({
+      carouselMedia: carouselMedia,
+      pageHeader: pageHeader,
+      pageContent: pageContent
     })
   }
 
   render() {
     const { pageContent, pageHeader, carouselMedia } = this.state
+    const {venues, destinations} = this.props
     return (
         <div>  
           <section className="page-section">
-            <EventForm />
+            <EventForm venues={venues} destinations={destinations} />
           </section>
           <section className="page-section">
           <Carousel media={carouselMedia}/>
