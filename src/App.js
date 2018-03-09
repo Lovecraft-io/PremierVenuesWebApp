@@ -3,6 +3,7 @@ import { BrowserRouter, Link } from 'react-router-dom'
 import AppDispatcher from './Flux/Dispatchers/AppDispatcher'
 import AppStore from './Flux/Stores/AppStore'
 import { SiteMenu } from './Components/SiteMenu'
+import { Footer } from './Components/Footer'
 import Loader from './Containers/Auth/Loader'
 import routes from './routes'
 import 'semantic-ui-css/semantic.min.css'
@@ -52,6 +53,7 @@ class App extends Component {
           <div>
             <SiteMenu loggedIn={loggedIn} handleLinkedinAuth={this.handleLinkedinAuth} venues={venues} destinations={destinations} links={siteNav} />
             {routes}
+            <Footer loggedIn={loggedIn} handleLinkedinAuth={this.handleLinkedinAuth} venues={venues} destinations={destinations} links={siteNav} />
           </div>
         </BrowserRouter>
       )

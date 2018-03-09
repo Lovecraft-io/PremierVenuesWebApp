@@ -83,7 +83,7 @@ summary,
 time,
 mark,
 audio,
-video {
+video, .text {
   margin: 0;
   padding: 0;
   border: 0;
@@ -306,6 +306,9 @@ textarea {
 .clearfix:after {
   clear: both;
 }
+.container {
+  height: auto;
+}
 
 /* ==========================================================================
    EXAMPLE Media Queries for Responsive Design.
@@ -467,21 +470,32 @@ a {
 
 /*object-fit: cover; */
 /*object-position: center; */
-.ContentPreviewCard__card img.left {
+.ContentPreviewCard__left {
   position: absolute;
   left: 50%;
   top: 50%;
-  height: auto;
-  width: 100%;
+ 
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  object-position: center;
 }
-
+.ContentPreviewCard__right_textBg {
+  position: relative;
+  z-index: -1;
+  opacity: .8;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: #f27777!important;
+}
 /* Right side of the card */
 .ContentPreviewCard__right {
   margin-left: 590px;
   margin-right: 20px;
+  padding-top: 70px;
 }
 
 .ContentPreviewCard__card h1 {
@@ -532,15 +546,15 @@ a {
   left: 30px;
   bottom: -120px;
   font-size: 6rem;
-  color: #c3c3c3;
+  
 }
 
 .ContentPreviewCard__card h6 {
   position: absolute;
-  left: 30px;
-  bottom: -55px;
+  /* left: 30px; */
+  bottom: -90px;
   font-size: 2rem;
-  color: #c3c3c3;
+  
 }
 
 /* Those futur buttons */

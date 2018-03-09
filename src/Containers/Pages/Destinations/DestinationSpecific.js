@@ -49,12 +49,13 @@ export default class DestinationSpecific extends Component {
 
   render() {
     const {currentDestination} = AppStore.data
+    const {destination} = this.props.match.params
     const {destinationVenues} = currentDestination
-    const venuesList = (currentDestination.destinationVenues && currentDestination.destinationVenues.length > 0) ? destinationVenues.map((venue) =>  <ContentPreviewCard venue={venue} /> ) : null
+    const venuesList = (currentDestination.destinationVenues && currentDestination.destinationVenues.length > 0) ? destinationVenues.map((venue) =>  <ContentPreviewCard venue={venue} city={destination}/> ) : null
     
     return (
-      <div id="DestinationSpecific">
-        <Container fluid style={{backgroundImage: `url(${currentDestination.destinationFeaturedImage.fields.file.url})`}}>
+      <div id="DestinationSpecific" style={{backgroundImage: `url(${currentDestination.destinationFeaturedImage.fields.file.url})`}}>
+        <Container fluid >
           <Header
             as="h1"
             content={currentDestination.destinationName}
@@ -64,9 +65,8 @@ export default class DestinationSpecific extends Component {
               fontWeight: 'normal',
               height: '500px',
               textAlign: 'center',
-              paddingTop: '2em'
+              paddingTop: '6em'
             }}/>
-          <p>{currentDestination.destinationDescription}</p>
         </Container>
         <main className='DestinationSpecific__venues_list'>
             {venuesList}
