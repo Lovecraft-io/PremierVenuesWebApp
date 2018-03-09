@@ -1,7 +1,23 @@
 import React, { Component } from 'react'
 import AppDispatcher from '../../../Flux/Dispatchers/AppDispatcher'
 import AppStore from '../../../Flux/Stores/AppStore'
+import {ContentPreviewCard} from '../../../Components/ContentPreviewCard'
 import _ from 'lodash'
+import {
+  Button,
+  Container,
+  Divider,
+  Grid,
+  Header,
+  Icon,
+  Image,
+  List,
+  Menu,
+  Responsive,
+  Segment,
+  Sidebar,
+  Visibility
+} from 'semantic-ui-react'
 import './destination.css'
 
 export default class DestinationSpecific extends Component {
@@ -21,92 +37,9 @@ export default class DestinationSpecific extends Component {
     }
   }
   componentDidMount() {
-    console.log(this.props)
-    let ticking = false
-    let isFirefox = /Firefox/i.test(navigator.userAgent)
-    let isIe =
-      /MSIE/i.test(navigator.userAgent) ||
-      /Trident.*rv\:11\./i.test(navigator.userAgent)
-    let scrollSensitivitySetting = 30 //Increase/decrease this number to change sensitivity to trackpad gestures (up = less sensitive; down = more sensitive)
-    let slideDurationSetting = 600 //Amount of time for which slide is "locked"
-    let currentSlideNumber = 0
-    let slideNumber = document.querySelectorAll('.destination_background').length
-    console.log(totalSlideNumber)
-    this.setState({
-      totalSlideNumber: slideNumber
-    })
-    const {totalSlideNumber} = this.state
-    if(totalSlideNumber) {
-      this.parallax(isFirefox, totalSlideNumber, ticking, isIe, scrollSensitivitySetting, slideDurationSetting, currentSlideNumber)
-    }
-
-    
-   
+    console.log(this.props)   
   }
-  parallax(isFirefox, totalSlideNumber, ticking, isIe, scrollSensitivitySetting, slideDurationSetting, currentSlideNumber) {
-    const parallaxScroll = (evt) => {
-      let delta 
-      if (isFirefox) {
-        //Set delta for Firefox
-        delta = evt.detail * -120
-      } else if (isIe) {
-        //Set delta for IE
-        delta = -evt.deltaY
-      } else {
-        //Set delta for all other browsers
-        delta = evt.wheelDelta
-      }
-
-      if (ticking != true) {
-        if (delta <= -scrollSensitivitySetting) {
-          //Down scroll
-          ticking = true
-          if (currentSlideNumber !== totalSlideNumber - 1) {
-            currentSlideNumber++
-            nextItem()
-          }
-          slideDurationTimeout(slideDurationSetting)
-        }
-        if (delta >= scrollSensitivitySetting) {
-          //Up scroll
-          ticking = true
-          if (currentSlideNumber !== 0) {
-            currentSlideNumber--
-          }
-          previousItem()
-          slideDurationTimeout(slideDurationSetting)
-        }
-      }
-    }
-
-    // ------------- SET TIMEOUT TO TEMPORARILY "LOCK" SLIDES ------------- //
-    const slideDurationTimeout = (slideDuration) => {
-      setTimeout(() => {
-        ticking = false
-      }, slideDuration)
-    }
-
-    // ------------- ADD EVENT LISTENER ------------- //
-    let mousewheelEvent = isFirefox ? 'DOMMouseScroll' : 'wheel'
-    window.addEventListener(
-      mousewheelEvent,
-      _.throttle(parallaxScroll, 60),
-      false
-    )
-
-    // ------------- SLIDE MOTION ------------- //
-    const nextItem = () => {
-      let $previousSlide = document.querySelectorAll('.destination_background')[currentSlideNumber - 1]
-      $previousSlide.classList.remove('up-scroll')
-      $previousSlide.classList.add('down-scroll')
-    }
-
-    const previousItem = () => {
-      let $currentSlide = document.querySelectorAll('.destination_background')[currentSlideNumber]
-      $currentSlide.classList.remove('down-scroll')
-      $currentSlide.classLis.add('up-scroll')
-    }
-  }
+ 
   getDestinationData(destination) {
     AppDispatcher.dispatch({
       action: 'get-destination-data',
@@ -116,41 +49,28 @@ export default class DestinationSpecific extends Component {
 
   render() {
     const {currentDestination} = AppStore.data
-    console.log(currentDestination)
-
+    const {destinationVenues} = currentDestination
+    const venuesList = (currentDestination.destinationVenues && currentDestination.destinationVenues.length > 0) ? destinationVenues.map((venue) =>  <ContentPreviewCard venue={venue} /> ) : null
+    
     return (
       <div id="DestinationSpecific">
-        <div className="destination_container">
-          <section className="destination_background" style={{backgroundImage: `url(${currentDestination.destinationFeaturedImage.fields.file.url})`}}>
-            <div className="destination_content-wrapper">
-              <p className="destination_content-title">
-                {currentDestination.destinationName}
-              </p>
-              <p className="destination_content-subtitle">{currentDestination.destinationDescription}</p>
-            </div>
-          </section>
-          <section className="destination_background">
-            <div className="destination_content-wrapper">
-              <p className="destination_content-title">
-                
-              </p>
-              <p className="destination_content-subtitle">
-             
-              </p>
-            </div>
-          </section>
-          <section className="destination_background">
-            <div className="destination_content-wrapper">
-              <p className="destination_content-title">
-                Etiam consequat lectus.
-              </p>
-              <p className="destination_content-subtitle">
-                Nullam tristique urna sed tellus ornare congue. Etiam vitae erat
-                at nibh aliquam dapibus.
-              </p>
-            </div>
-          </section>
-        </div>
+        <Container fluid style={{backgroundImage: `url(${currentDestination.destinationFeaturedImage.fields.file.url})`}}>
+          <Header
+            as="h1"
+            content={currentDestination.destinationName}
+            inverted
+            style={{
+              fontSize: '4em',
+              fontWeight: 'normal',
+              height: '500px',
+              textAlign: 'center',
+              paddingTop: '2em'
+            }}/>
+          <p>{currentDestination.destinationDescription}</p>
+        </Container>
+        <main className='DestinationSpecific__venues_list'>
+            {venuesList}
+        </main>
       </div>
     )
   }

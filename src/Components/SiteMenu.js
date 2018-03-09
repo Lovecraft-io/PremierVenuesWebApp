@@ -1,20 +1,25 @@
 import React, { Component } from 'react'
 import { Menu, Dropdown } from 'semantic-ui-react'
-import AppDispatcher from '../Flux/Dispatchers/AppDispatcher'
-import { Link } from 'react-router-dom'
+
+import { Link, Redirect } from 'react-router-dom'
 import AppStore from '../Flux/Stores/AppStore'
 const {data} = AppStore
 
 
 const logInOrOutButton = (props) => props.loggedIn ? <Menu.Item><span onClick={() => props.handleLinkedinAuth()}>Log Out</span></Menu.Item> : <Menu.Item><span onClick={() => props.handleLinkedinAuth()}>Login</span></Menu.Item>
 const signUpButton = (props) => props.loggedIn ? null : <Menu.Item><span onClick={() => props.handleLinkedinAuth()}>Sign Up</span></Menu.Item>
-const dropDownMenu = (title, links) => (
+const handleRedirect = (e) => {
+ const venue = e.target.replace('/venues/', '')
+ console.log(venue)
+}
+
+const dropDownMenu = (title, links) => (  
   <Dropdown pointing className='link item' text={title}>
       <Dropdown.Menu>
         <Dropdown.Item><Link to={`/${encodeURI(title.toLowerCase())}`}>All {title}</Link></Dropdown.Item>
         {links.map((link) => (
           <Dropdown.Item>
-            <Link to={link.venueTitle ? `/venues/${link.venueTitle }` : `/destinations/${link.destinationName }`}>{link.venueTitle ? link.venueTitle : link.destinationName}</Link>
+            <Link to={link.venueTitle ? `/venues/${link.venueTitle }` : `/destinations/${link.destinationName }`} onClick={(e) => handleRedirect(e)}>{link.venueTitle ? link.venueTitle : link.destinationName}</Link>
           </Dropdown.Item>
         ))}
       </Dropdown.Menu>

@@ -19,7 +19,7 @@ import {
 import _ from 'lodash'
 import './venue.css'
 
-export default class DestinationSpecific extends Component {
+export default class VenueSpecific extends Component {
   constructor() {
     super()
     this.state = {}
@@ -27,7 +27,20 @@ export default class DestinationSpecific extends Component {
   componentWillMount() {
     console.log(this.props)
     const { venueName } = this.props.match.params
+    console.log(venueName)
     this.getVenueData(venueName)
+  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   if(this.props.match.params.venueName !== nextProps.match.params.venueName) {
+  //     return true
+  //   } else {
+  //     return false
+  //   }
+
+  // }
+  componentDidUpdate(prevProps, prevState) {
+    console.log(prevProps)
+    console.log(this.props)
   }
 
   getVenueData(venue) {

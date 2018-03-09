@@ -1,5 +1,5 @@
 
-.destination_background {
+.Destination_background {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -15,7 +15,7 @@
   -webkit-transition: all 1.2s cubic-bezier(0.22, 0.44, 0, 1);
   transition: all 1.2s cubic-bezier(0.22, 0.44, 0, 1);
 }
-.destination_background:before {
+.Destination_background:before {
   content: "";
   position: absolute;
   width: 100%;
@@ -26,36 +26,36 @@
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.3);
 }
-.destination_background:first-child {
+.Destination_background:first-child {
   /* background-image: url(https://s8.postimg.org/lf2udl5np/4_Aihmii.jpg); */
   -webkit-transform: translateY(-15vh);
           transform: translateY(-15vh);
 }
-.destination_background:first-child .destination_content-wrapper {
+.Destination_background:first-child .Destination_content-wrapper {
   -webkit-transform: translateY(15vh);
           transform: translateY(15vh);
 }
-.destination_background:nth-child(2) {
+.Destination_background:nth-child(2) {
   /* background-image: url(https://s8.postimg.org/ow4wgk4px/ugqti_Lg.jpg); */
 }
-.destination_background:nth-child(3) {
+.Destination_background:nth-child(3) {
   /* background-image: url(https://s8.postimg.org/grwsbtiat/x_ZMOBTj.jpg); */
 }
 
 /* Set stacking context of slides */
-.destination_background:nth-child(1) {
+.Destination_background:nth-child(1) {
   z-index: 3;
 }
 
-.destination_background:nth-child(2) {
+.Destination_background:nth-child(2) {
   z-index: 2;
 }
 
-.destination_background:nth-child(3) {
+.Destination_background:nth-child(3) {
   z-index: 1;
 }
 
-.destination_content-wrapper {
+.Destination_content-wrapper {
   height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -79,41 +79,59 @@
   -webkit-transition: all 1.7s cubic-bezier(0.22, 0.44, 0, 1);
   transition: all 1.7s cubic-bezier(0.22, 0.44, 0, 1);
 }
-.destination_content-title {
+.Destination_content-title {
   font-size: 12vh;
   line-height: 1.4;
 }
 
-.destination_background.up-scroll {
+.Destination_background.up-scroll {
   -webkit-transform: translate3d(0, -15vh, 0);
           transform: translate3d(0, -15vh, 0);
 }
-.destination_background.up-scroll .destination_content-wrapper {
+.Destination_background.up-scroll .Destination_content-wrapper {
   -webkit-transform: translateY(15vh);
           transform: translateY(15vh);
 }
-.destination_background.up-scroll + .destination_background {
+.Destination_background.up-scroll + .Destination_background {
   -webkit-transform: translate3d(0, 30vh, 0);
           transform: translate3d(0, 30vh, 0);
 }
-.destination_background.up-scroll + .destination_background .destination_content-wrapper {
+.Destination_background.up-scroll + .Destination_background .Destination_content-wrapper {
   -webkit-transform: translateY(30vh);
           transform: translateY(30vh);
 }
 
-.destination_background.down-scroll {
+.Destination_background.down-scroll {
   -webkit-transform: translate3d(0, -130vh, 0);
           transform: translate3d(0, -130vh, 0);
 }
-.destination_background.down-scroll .destination_content-wrapper {
+.Destination_background.down-scroll .Destination_content-wrapper {
   -webkit-transform: translateY(40vh);
           transform: translateY(40vh);
 }
-.destination_background.down-scroll + .destination_background:not(.down-scroll) {
+.Destination_background.down-scroll + .Destination_background:not(.down-scroll) {
   -webkit-transform: translate3d(0, -15vh, 0);
           transform: translate3d(0, -15vh, 0);
 }
-.destination_background.down-scroll + .destination_background:not(.down-scroll) .destination_content-wrapper {
+.Destination_background.down-scroll + .Destination_background:not(.down-scroll) .Destination_content-wrapper {
   -webkit-transform: translateY(15vh);
           transform: translateY(15vh);
 }
+
+/* 
+	=====================================================================================================================================
+
+	DESTINATION SPECIFIC
+
+	=====================================================================================================================================
+ */
+
+ #DestinationSpecific {
+
+ }
+
+ #DestinationSpecific .container {
+   background-size: cover!important;
+   background-attachment: fixed;
+   background-repeat: no-repeat;
+ }
