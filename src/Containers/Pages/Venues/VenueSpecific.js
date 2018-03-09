@@ -17,6 +17,7 @@ import {
   Visibility
 } from 'semantic-ui-react'
 import _ from 'lodash'
+import './venue.css'
 
 export default class DestinationSpecific extends Component {
   constructor() {
@@ -28,22 +29,6 @@ export default class DestinationSpecific extends Component {
     const { venueName } = this.props.match.params
     this.getVenueData(venueName)
   }
-
-  // componentDidUpdate(prevProps, prevState) {
-  //   if(prevProps.currentVenue === undefined && !prevState.currentVenue) {
-  //     this.setState({...this.props.currentVenue})
-  //   }
-
-  // }
-  // componentDidMount() {
-  //   console.log(this.props)
-  // }
-  // shouldComponentUpdate(prevProps, nextProps) {
-  //   if(prevProps.currentVenue === undefined && nextProps.currentVenue) {
-  //     return true
-  //   }
-  //   return false
-  // }
 
   getVenueData(venue) {
     AppDispatcher.dispatch({
@@ -72,17 +57,8 @@ export default class DestinationSpecific extends Component {
               fontSize: '4em',
               fontWeight: 'normal',
               height: '500px',
-              marginBottom: 0
-            }}
-          />
-          <Header
-            as="h2"
-            content={currentVenue ? currentVenue.venueTitle : null}
-            inverted
-            style={{
-              fontSize: '1.7em',
-              fontWeight: 'normal',
-              marginTop: '1.5em'
+              textAlign: 'center',
+              paddingTop: '2em'
             }}
           />
         </Container>
