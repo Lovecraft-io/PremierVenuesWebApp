@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import _ from 'lodash'
 import Axios from 'axios'
+import AppStore from '../Flux/Stores/AppStore'
 
 export default class EventForm extends Component {
   constructor(props) {
@@ -35,7 +36,7 @@ export default class EventForm extends Component {
     this.setState({when: e.target.value})
   }
   sendToSlack = (data) => {
-    const options = {text: 'New event inquiry: ' + data}
+    const options = {text: 'New event inquiry: ' + JSON.stringify(data)}
     Axios.post('https://hooks.slack.com/services/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', JSON.stringify(options))
     .then((res) => {
         console.log(res)
@@ -50,11 +51,19 @@ export default class EventForm extends Component {
   }
   handleSubmit(e) {
     e.preventDefault()
-    const data = this.state
+    const {currentUser} = AppStore.data
+    const data = {...this.state}
+    if(currentUser) {
+      console.log("Current User")
+      console.log(currentUser)
+      data.member = {...currentUser}
+    }
+    
     this.sendToSlack(data)
   }
 
   render() {
+    
     const {venues, destinations} = this.props
     const people = _.range(1, 600)
     const selectPeople = () => people.map((number) => <option value={number}>{number}</option>)

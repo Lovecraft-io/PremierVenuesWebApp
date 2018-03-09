@@ -3,3 +3,31 @@
   text-align: center;
   margin: 40px auto;
 }
+
+
+/* 
+	=====================================================================================================================================
+
+	ABOUT
+
+	=====================================================================================================================================
+ */
+
+/* HEADER IMAGE */
+.header-image {
+  width: 100%;
+  height: 400px;
+  background-size: 100%;
+  background-position: center;
+  background-attachment: fixed;
+  margin: 20px;
+}
+.header-image img {
+
+}
+.main-content {
+  margin-top: -200px!important;
+  background: #fff;
+  padding: 20px!important;
+  border-radius: 5px;
+}
