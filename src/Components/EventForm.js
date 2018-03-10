@@ -47,7 +47,7 @@ export default class EventForm extends Component {
 
   componentDidMount() {
     const NLForm = window.NLForm
-    // const form = new NLForm(document.getElementById( 'nl-form'))
+    const form = new NLForm(document.getElementById( 'nl-form'))
   }
   handleSubmit(e) {
     e.preventDefault()
