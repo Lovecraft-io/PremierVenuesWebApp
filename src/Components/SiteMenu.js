@@ -53,11 +53,7 @@ export const SiteMenu = props => {
   
   return (
     <Menu pointing secondary id="site-menu">
-      <Menu.Item>
-        <div className="logo">
-          <Link to="/">Premier Venues</Link>
-        </div>
-      </Menu.Item>
+      <Menu.Item><Link to="/">Premier Venues</Link></Menu.Item>
       <Menu.Menu position="right">
         {nav}
         {logInOrOutButton(props)}
