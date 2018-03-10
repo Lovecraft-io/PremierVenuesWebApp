@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import AppDispatcher from '../../../Flux/Dispatchers/AppDispatcher'
 import { Carousel } from '../../../Components/Carousel'
 import EventForm from '../../../Components/EventForm'
+import {VideoBackground} from './VideoBackground'
+import './home.css'
 import '../pages.css'
 
 export default class Home extends Component {
@@ -31,6 +33,7 @@ export default class Home extends Component {
     return (
         <div>  
           <section className="page-section">
+            <VideoBackground />
             <EventForm venues={venues} destinations={destinations} />
           </section>
           <section className="page-section">

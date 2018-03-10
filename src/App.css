@@ -413,27 +413,22 @@ a {
   top: 0;
   left: 0;
   height: 60px;
-  background: #fff;
+  background-color: rgba(0,0,0,0.7);
   width: 100%;
   z-index: 2000;
+  margin: 0;
 }
 #site-menu .right.menu .item .text {
   margin-top: 0;
 }
-#site-nav li {
-  position: relative;
-  vertical-align: middle;
-  line-height: 1;
-  text-decoration: none;
-  -webkit-tap-highlight-color: transparent;
-  -ms-flex: 0 0 auto;
-  flex: 0 0 auto;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  padding: 25px 10px 0;
-  font-weight: 400;
+#site-menu  li {
+  color: white;
+}
+a, a:link, a:visited {
+  color: inherit;
+}
+#site-menu .right.menu .item .text, #site-menu .right.menu .item, #site-menu .logo {
+  color: white;
 }
 /* 
 	=====================================================================================================================================
@@ -664,6 +659,7 @@ a {
   margin: 0.3em auto 0 auto;
   font-size: 4em;
   line-height: 1.5;
+  color: white;
 }
 
 .nl-form ul {
@@ -935,3 +931,20 @@ input:focus::-ms-input-placeholder {
     font-size: 2em;
   }
 }
+
+/* 
+	=====================================================================================================================================
+
+	FOOTER
+
+	=====================================================================================================================================
+ */
+
+ #Footer {
+   position: fixed;
+   bottom: 0;
+   left: 0;
+   width: 100%;
+   height: auto;
+
+ }

@@ -127,11 +127,11 @@
  */
 
  #DestinationSpecific {
-  background-size: 100%!important;
-  /* background-attachment: fixed; */
+  background-size: cover;
+  background-attachment: fixed;
   background-repeat: no-repeat;
   height: 100vh;
-  position: fixed;
+  /* position: fixed; */
   top: 0;
   left: 0;
   width: 100%;

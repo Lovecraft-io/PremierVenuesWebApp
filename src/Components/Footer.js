@@ -16,6 +16,7 @@ import {
 export const Footer = (props) => (
 
   <Segment
+  id="Footer"
   inverted
   style={{ margin: '5em 0em 0em', padding: '5em 0em' }}
   vertical>
