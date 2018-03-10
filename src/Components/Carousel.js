@@ -1,18 +1,12 @@
-import React, {Component} from 'react'
-import {
-  CarouselProvider,
-  Slider,
-  Slide,
-  ButtonBack,
-  ButtonNext
-} from 'pure-react-carousel'
+import React, { Component } from 'react'
+import OwlCarousel from 'react-owl-carousel2'
+import './owlCarousel.css'
 import {
   MorphIcon,
   CloseButton,
   NavButton,
-  PlusButton,
+  PlusButton
 } from 'react-svg-buttons'
-import 'pure-react-carousel/dist/react-carousel.es.css'
 
 class MorphButton extends Component {
   state = {
@@ -21,44 +15,56 @@ class MorphButton extends Component {
   }
   changeButton = () => {
     const _this = this
-    const {defaultType} = this.state
-    this.setState({type:"crossSparks"})
+    const { defaultType } = this.state
+    this.setState({ type: 'crossSparks' })
     setTimeout(() => {
-      _this.setState({type:defaultType})
+      _this.setState({ type: defaultType })
     }, 1000)
   }
   render = () => {
-    const {type} = this.state
+    const { type } = this.state
     console.log(type)
     return (
-      <MorphIcon 
-        type={type} 
+      <MorphIcon
+        type={type}
         onClick={this.changeButton}
-        size={80}
+        size={40}
         thickness={2}
-          color="#dd6e78"
+        color="#dd6e78"
       />
     )
   }
 }
-
+{
+  /*  */
+}
+{
+  /*  */
+}
 export const Carousel = props => {
   console.log(props)
-  
+  const options = {
+    items: 1,
+    nav: true,
+    loop: true,
+    navText : [`${<MorphButton type="arrowLeft" />}`,`${<MorphButton type="arrowRight" />}`],
+    autoplay: true
+};
+
+const events = {
+    onDragged: (event) => {
+      console.log(event)
+    },
+    onChanged: (event) => {
+      console.log(event)
+    }
+};
+
   return (
-    <CarouselProvider
-    naturalSlideWidth={100}
-    naturalSlideHeight={125}
-    totalSlides={props.media ? props.media.length : 0}>
-    <Slider>
-      {props.media ? props.media.map((item, i) => (
-        <Slide index={i}><img src={item.fields.file.url} alt=""/></Slide>
-      )) : null}
-    </Slider>
-    <ButtonBack className="carousel-button"><MorphButton type="arrowLeft"/></ButtonBack>
-    <ButtonNext className="carousel-button"><MorphButton type="arrowRight"/></ButtonNext>
-  </CarouselProvider>
+    <OwlCarousel options={options} events={events}>
+      {props.media
+        ? props.media.map((item, i) => <img src={item.fields.file.url} />)
+        : null}
+    </OwlCarousel>
   )
 }
- 
-

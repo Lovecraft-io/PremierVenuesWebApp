@@ -1,411 +1,24 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
+/* 
+/* 
+	=====================================================================================================================================
 
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video, .text {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-  display: block;
-}
-body {
-  line-height: 1;
-}
-ol,
-ul {
-  list-style: none;
-}
-blockquote,
-q {
-  quotes: none;
-}
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-  content: '';
-  content: none;
-}
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
+	Site Styles
 
-/*! HTML5 Boilerplate v6.0.1 | MIT License | https://html5boilerplate.com/ */
-
-/*
- * What follows is the result of much research on cross-browser styling.
- * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
- * Kroc Camen, and the H5BP dev community and team.
+	=====================================================================================================================================
  */
 
-/* ==========================================================================
-   Base styles: opinionated defaults
-   ========================================================================== */
-
+/* ==================
+   Box Model
+========================== */
 html {
-  color: #222;
-  font-size: 1em;
-  line-height: 1.4;
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
 }
 
-/*
- * Remove text-shadow in selection highlight:
- * https://twitter.com/miketaylr/status/12228805301
- *
- * Vendor-prefixed and regular ::selection selectors cannot be combined:
- * https://stackoverflow.com/a/16982510/7133471
- *
- * Customize the background color to match your design.
- */
-
-::-moz-selection {
-  background: #b3d4fc;
-  text-shadow: none;
-}
-
-::selection {
-  background: #b3d4fc;
-  text-shadow: none;
-}
-
-/*
- * A better looking default horizontal rule
- */
-
-hr {
-  display: block;
-  height: 1px;
-  border: 0;
-  border-top: 1px solid #ccc;
-  margin: 1em 0;
-  padding: 0;
-}
-
-/*
- * Remove the gap between audio, canvas, iframes,
- * images, videos and the bottom of their containers:
- * https://github.com/h5bp/html5-boilerplate/issues/440
- */
-
-audio,
-canvas,
-iframe,
-img,
-svg,
-video {
-  vertical-align: middle;
-}
-
-/*
- * Remove default fieldset styles.
- */
-
-fieldset {
-  border: 0;
-  margin: 0;
-  padding: 0;
-}
-
-/*
- * Allow only vertical resizing of textareas.
- */
-
-textarea {
-  resize: vertical;
-}
-
-/* ==========================================================================
-   Browser Upgrade Prompt
-   ========================================================================== */
-
-.browserupgrade {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
-}
-
-/* ==========================================================================
-   Helper classes
-   ========================================================================== */
-
-/*
- * Hide visually and from screen readers
- */
-
-.hidden {
-  display: none !important;
-}
-
-/*
- * Hide only visually, but have it available for screen readers:
- * https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
- *
- * 1. For long content, line feeds are not interpreted as spaces and small width
- *    causes content to wrap 1 word per line:
- *    https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
- */
-
-.visuallyhidden {
-  border: 0;
-  clip: rect(0 0 0 0);
-  -webkit-clip-path: inset(50%);
-  clip-path: inset(50%);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-  white-space: nowrap; /* 1 */
-}
-
-/*
- * Extends the .visuallyhidden class to allow the element
- * to be focusable when navigated to via the keyboard:
- * https://www.drupal.org/node/897638
- */
-
-.visuallyhidden.focusable:active,
-.visuallyhidden.focusable:focus {
-  clip: auto;
-  -webkit-clip-path: none;
-  clip-path: none;
-  height: auto;
-  margin: 0;
-  overflow: visible;
-  position: static;
-  width: auto;
-  white-space: inherit;
-}
-
-/*
- * Hide visually and from screen readers, but maintain layout
- */
-
-.invisible {
-  visibility: hidden;
-}
-
-/*
- * Clearfix: contain floats
- *
- * For modern browsers
- * 1. The space content is one way to avoid an Opera bug when the
- *    `contenteditable` attribute is included anywhere else in the document.
- *    Otherwise it causes space to appear at the top and bottom of elements
- *    that receive the `clearfix` class.
- * 2. The use of `table` rather than `block` is only necessary if using
- *    `:before` to contain the top-margins of child elements.
- */
-
-.clearfix:before,
-.clearfix:after {
-  content: ' '; /* 1 */
-  display: table; /* 2 */
-}
-
-.clearfix:after {
-  clear: both;
-}
-.container {
-  height: auto;
-}
-
-/* ==========================================================================
-   EXAMPLE Media Queries for Responsive Design.
-   These examples override the primary ('mobile first') styles.
-   Modify as content requires.
-   ========================================================================== */
-
-@media only screen and (min-width: 35em) {
-  /* Style adjustments for viewports that meet the condition */
-}
-
-@media print,
-  (-webkit-min-device-pixel-ratio: 1.25),
-  (min-resolution: 1.25dppx),
-  (min-resolution: 120dpi) {
-  /* Style adjustments for high resolution devices */
-}
-
-/* ==========================================================================
-   Print styles.
-   Inlined to avoid the additional HTTP request:
-   http://www.phpied.com/delay-loading-your-print-css/
-   ========================================================================== */
-
-@media print {
-  *,
-  *:before,
-  *:after {
-    background: transparent !important;
-    color: #000 !important; /* Black prints faster:
-                                   http://www.sanbeiji.com/archives/953 */
-    box-shadow: none !important;
-    text-shadow: none !important;
-  }
-
-  a,
-  a:visited {
-    text-decoration: underline;
-  }
-
-  a[href]:after {
-    content: ' (' attr(href) ')';
-  }
-
-  abbr[title]:after {
-    content: ' (' attr(title) ')';
-  }
-
-  /*
-     * Don't show links that are fragment identifiers,
-     * or use the `javascript:` pseudo protocol
-     */
-
-  a[href^='#']:after,
-  a[href^='javascript:']:after {
-    content: '';
-  }
-
-  pre {
-    white-space: pre-wrap !important;
-  }
-  pre,
-  blockquote {
-    border: 1px solid #999;
-    page-break-inside: avoid;
-  }
-
-  /*
-     * Printing Tables:
-     * http://css-discuss.incutio.com/wiki/Printing_Tables
-     */
-
-  thead {
-    display: table-header-group;
-  }
-
-  tr,
-  img {
-    page-break-inside: avoid;
-  }
-
-  p,
-  h2,
-  h3 {
-    orphans: 3;
-    widows: 3;
-  }
-
-  h2,
-  h3 {
-    page-break-after: avoid;
-  }
-}
-
-a {
-  color: #333;
-}
 /* Site Navigation */
 
 #site-menu {
@@ -413,7 +26,7 @@ a {
   top: 0;
   left: 0;
   height: 60px;
-  background-color: rgba(0,0,0,0.7);
+  background-color: rgba(0, 0, 0, 0.7);
   width: 100%;
   z-index: 2000;
   margin: 0;
@@ -421,53 +34,25 @@ a {
 #site-menu .right.menu .item .text {
   margin-top: 0;
 }
-#site-menu  li {
+#site-menu li {
   color: white;
 }
-a, a:link, a:visited {
+a,
+a:link,
+a:visited {
   color: inherit;
 }
-#site-menu .right.menu .item .text, #site-menu .right.menu .item, #site-menu .logo {
+#site-menu .right.menu .item .text,
+#site-menu .right.menu .item,
+#site-menu .logo {
   color: white;
 }
-/* 
-	=====================================================================================================================================
-
-	App
-
-	=====================================================================================================================================
- */
- /* #App {
-
- }
- #App__bg {
-  left: 0;
-  top: 0;
-  right: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 0;
-  position: absolute;
- }
- .App__bg {
+#App {
   position: relative;
-  display: block;
-  height: 100vh;
-  width: 25%;
-  border-right: 1px solid #687789;
- }
- .bg1 {
+  height: 100%;
+}
 
- }
- .bg2 {
 
- }
- .bg3 {
-
- }
- .bg4 {
-
- } */
 /* 
 	=====================================================================================================================================
 
@@ -507,7 +92,7 @@ a, a:link, a:visited {
   position: absolute;
   left: 50%;
   top: 50%;
- 
+
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
@@ -519,10 +104,10 @@ a, a:link, a:visited {
 .ContentPreviewCard__right_textBg {
   position: relative;
   z-index: -1;
-  opacity: .8;
+  opacity: 0.8;
   letter-spacing: 5px;
   text-transform: uppercase;
-  color: #f27777!important;
+  color: #f27777 !important;
 }
 /* Right side of the card */
 .ContentPreviewCard__right {
@@ -579,7 +164,6 @@ a, a:link, a:visited {
   left: 30px;
   bottom: -120px;
   font-size: 6rem;
-  
 }
 
 .ContentPreviewCard__card h6 {
@@ -587,7 +171,6 @@ a, a:link, a:visited {
   /* left: 30px; */
   bottom: -90px;
   font-size: 2rem;
-  
 }
 
 /* Those futur buttons */
@@ -622,17 +205,24 @@ a, a:link, a:visited {
 
 /* CAROUSEL */
 
-.carousel__slider--horizontal {
+.owl-carousel {
   max-height: 600px;
+  height: 100%;
   display: block;
   margin: auto;
 }
-.carousel__inner-slide {
-  width: 100%;
+.owl-stage-outer {
+  height: 100%;
+}
+.owl-stage {
+  position: relative;
+  height: 100%;
+}
+.owl-item {
   height: 100%;
 }
 
-.carousel__inner-slide img {
+.owl-item img {
   object-fit: cover;
   object-position: center;
   width: 100%;
@@ -940,11 +530,11 @@ input:focus::-ms-input-placeholder {
 	=====================================================================================================================================
  */
 
- #Footer {
-   /* position: fixed; */
-   bottom: 0;
-   left: 0;
-   width: 100%;
-   height: auto;
-
- }
+#Footer {
+  /* position: fixed; */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+}

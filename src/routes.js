@@ -89,7 +89,6 @@ const handleAuthentication = (nextState, replace) => {
 
 
 export default(
-  
   <Switch>
       {routesArray.map((route, i) => (
         <Route exact path={route.path} render={(props) => {

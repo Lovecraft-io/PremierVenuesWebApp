@@ -51,15 +51,9 @@ class App extends Component {
       return (
         <BrowserRouter {...data}>
           <div id="App">
-            <div id="App__bg">
-              <div className="App__bg bg1"></div>
-              <div className="App__bg bg2"></div>
-              <div className="App__bg bg3"></div>
-              <div className="App__bg bg4"></div>
-            </div>
             <SiteMenu loggedIn={loggedIn} handleLinkedinAuth={this.handleLinkedinAuth} venues={venues} destinations={destinations} links={siteNav} />
             {routes}
-            <Footer loggedIn={loggedIn} handleLinkedinAuth={this.handleLinkedinAuth} venues={venues} destinations={destinations} links={siteNav} />
+            {/* <Footer loggedIn={loggedIn} handleLinkedinAuth={this.handleLinkedinAuth} venues={venues} destinations={destinations} links={siteNav} /> */}
           </div>
         </BrowserRouter>
       )
