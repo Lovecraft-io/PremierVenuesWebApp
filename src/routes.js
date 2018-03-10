@@ -14,6 +14,7 @@ import Login from './Containers/Auth/Login'
 import SignUp from './Containers/Auth/SignUp'
 import Loader from './Containers/Auth/Loader'
 import Auth from './Containers/Auth/Auth'
+import SearchResults from './Components/SearchResults'
 
 const routesArray = [
   {
@@ -72,6 +73,11 @@ const routesArray = [
     component: SignUp
   },
   {
+    path: '/search/results',
+    exact: true,
+    component: SearchResults
+  },
+  {
     path: '/account/:id',
     exact: true,
     component: Account
@@ -80,14 +86,11 @@ const routesArray = [
 
 const {data} = AppStore
 const auth = new Auth()
-
 const handleAuthentication = (nextState, replace) => {
   if (/access_token|id_token|error/.test(nextState.location.hash)) {
     auth.handleAuthentication();
   }
 }
-
-
 export default(
   <Switch>
       {routesArray.map((route, i) => (

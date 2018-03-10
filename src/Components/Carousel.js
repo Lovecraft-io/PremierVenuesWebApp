@@ -35,28 +35,23 @@ class MorphButton extends Component {
     )
   }
 }
-{
-  /*  */
-}
-{
-  /*  */
-}
+
 export const Carousel = props => {
   console.log(props)
   const options = {
     items: 1,
     nav: true,
     loop: true,
-    navText : [`${<MorphButton type="arrowLeft" />}`,`${<MorphButton type="arrowRight" />}`],
+    // navText : [`${<MorphButton type="arrowLeft" />}`,`${<MorphButton type="arrowRight" />}`],
     autoplay: true
 };
 
 const events = {
     onDragged: (event) => {
-      console.log(event)
+      
     },
     onChanged: (event) => {
-      console.log(event)
+      
     }
 };
 

@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
 import _ from 'lodash'
 import Axios from 'axios'
+import FuzzySearch from 'fuzzy-search'
 import AppStore from '../Flux/Stores/AppStore'
+import AppDispatcher from '../Flux/Dispatchers/AppDispatcher'
 
 export default class EventForm extends Component {
   constructor(props) {
@@ -35,6 +37,64 @@ export default class EventForm extends Component {
     e.preventDefault()
     this.setState({when: e.target.value})
   }
+  componentDidMount() {
+    const NLForm = window.NLForm
+    const form = new NLForm(document.getElementById( 'nl-form'))
+    this.parseFormAnimationData()
+    
+  }
+  handleSubmit(e) {
+    e.preventDefault()
+    const infoFields = document.querySelectorAll('.nl-dd-checked')
+    const {currentUser} = AppStore.data
+    
+    const data = {...this.state}
+    let infoData = {}
+
+    console.log(infoFields)
+    infoFields.forEach((item) => {
+      console.log(item)
+      console.log(item.classList[0])
+      let infoType = item.classList[0]
+      infoData[infoType] = item.innerHTML
+    })
+    console.log(infoData)
+    if(currentUser) {
+      console.log("Current User")
+      console.log(currentUser)
+      data.member = {...currentUser}
+    }
+    this.sendToSlack(data)
+    this.runSearch(infoData)
+  
+  }
+  parseFormAnimationData() {
+    const infoFields = document.querySelectorAll('.nl-field-toggle')
+    infoFields.forEach((field) => {
+      let type = field.innerText.split(' ')[0]
+      let parent = field.closest('.nl-field')
+      let list = parent.lastElementChild
+      let options = list.querySelectorAll('li')
+      options.forEach((option) => {
+        option.classList.add(type)
+      })
+    })
+  }
+  runSearch(searchData) {
+    const {venues} = AppStore.data
+    console.log(venues)
+    console.log(searchData.location)
+    const searcher = new FuzzySearch(venues, ['venue.city, venue.venueDescription', 'city', 'venueTitle'], {
+      caseSensitive: false,
+      sort: true
+    })
+    const results = searcher.search(searchData.location)
+    console.log(results)
+    AppDispatcher.dispatch({
+      action: 'add-search-results',
+      data: {...results}
+    })
+  }
   sendToSlack = (data) => {
     const options = {text: 'New event inquiry: ' + JSON.stringify(data)}
     Axios.post('https://hooks.slack.com/services/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', JSON.stringify(options))
@@ -44,26 +104,7 @@ export default class EventForm extends Component {
         console.log(err)
       })
   }
-
-  componentDidMount() {
-    const NLForm = window.NLForm
-    const form = new NLForm(document.getElementById( 'nl-form'))
-  }
-  handleSubmit(e) {
-    e.preventDefault()
-    const {currentUser} = AppStore.data
-    const data = {...this.state}
-    if(currentUser) {
-      console.log("Current User")
-      console.log(currentUser)
-      data.member = {...currentUser}
-    }
-    
-    this.sendToSlack(data)
-  }
-
   render() {
-    
     const {venues, destinations} = this.props
     const people = _.range(1, 600)
     const selectPeople = () => people.map((number) => <option value={number}>{number}</option>)

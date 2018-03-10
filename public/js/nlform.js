@@ -160,7 +160,7 @@
 					// remove class nl-dd-checked from previous option
 					var selectedopt = this.optionsList.children[ this.selectedIdx ];
 					selectedopt.className = '';
-					opt.className = 'nl-dd-checked';
+					opt.className += ' nl-dd-checked';
 					this.toggle.innerHTML = opt.innerHTML;
 					// update selected index value
 					this.selectedIdx = idx;

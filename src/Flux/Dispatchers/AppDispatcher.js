@@ -6,7 +6,8 @@ import {
   authenticateAccessToken,
   getPageData,
   getDestinationData,
-  getVenueData
+  getVenueData,
+  addSearchResults
 } from '../Actions/Actions'
 
 const AppDispatcher = new Dispatcher()
@@ -41,6 +42,10 @@ AppDispatcher.register(payload => {
 
     case 'create-user-linkedin':
       createUserWithLinkedIn({ ...payload.data })
+      break
+
+    case 'add-search-results':
+      addSearchResults({ ...payload.data })
       break
 
     default:

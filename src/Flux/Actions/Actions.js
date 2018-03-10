@@ -124,4 +124,12 @@ export const getVenueData = (venue) => {
   AppStore.emitChange()
 }
 
+export const addSearchResults = (searchResults) => {
+  console.log(searchResults)
+  AppStore.data.searchResults = searchResults
+  AppStore.emitChange()
+  return <Redirect to="/search/results" />
+
+}
+
 export const createUserWithLinkedIn = data => {}
