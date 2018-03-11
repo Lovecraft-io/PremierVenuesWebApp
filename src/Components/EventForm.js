@@ -64,7 +64,7 @@ export default class EventForm extends Component {
       console.log(currentUser)
       data.member = {...currentUser}
     }
-    this.sendToSlack(data)
+    this.sendToSlack(infoData)
     this.runSearch(infoData)
   
   }
