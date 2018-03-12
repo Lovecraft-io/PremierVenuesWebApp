@@ -17,6 +17,7 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-flickity-component": "^2.0.0",
+    "react-intercom": "^1.0.14",
     "react-leaflet": "^1.8.2",
     "react-markdown": "^3.3.0",
     "react-owl-carousel2": "^0.3.0",
