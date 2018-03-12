@@ -1,0 +1,60 @@
+.map-container {
+  margin-top: 20px;
+  height: 600px;
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+  overflow: visible;
+}
+.leaflet-container {
+  height: 100%;
+  overflow: visible;
+}
+/* 
+	=====================================================================================================================================
+
+	POP UP
+
+	=====================================================================================================================================
+ */
+ .leaflet-popup-content-wrapper {
+   width: auto;
+   
+   height: 100%;
+ }
+ .leaflet-popup-content {
+   width: auto;
+   height: auto;
+ }
+ 
+.ui.card.card_popup {
+
+  justify-content: space-evenly!important;
+}
+.card_popup__top {
+padding: 5px;
+}
+.card_popup__top img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+.card_popup__bottom {
+padding: 5px;
+}
+.card_popup__bottom ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+
+}
+.card_popup__bottom ul li {
+  margin: 3px;
+  width: 45%;
+}
+.card_popup__bottom ul li a img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}

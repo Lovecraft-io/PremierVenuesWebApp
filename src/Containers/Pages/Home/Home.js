@@ -3,6 +3,7 @@ import AppDispatcher from '../../../Flux/Dispatchers/AppDispatcher'
 import { Carousel } from '../../../Components/Carousel'
 import EventForm from '../../../Components/EventForm'
 import { VideoBackground } from './VideoBackground'
+import DestinationsMap from '../../Maps/DestinationsMap'
 import './home.css'
 import '../pages.css'
 
@@ -36,13 +37,16 @@ export default class Home extends Component {
     const { pageContent, pageHeader, carouselMedia } = this.state
     const { venues, destinations } = this.props
     return (
-      <div>
+      <div id="Home" className="">
         <section className="page-section">
           <VideoBackground />
           <EventForm venues={venues} destinations={destinations} />
         </section>
         <section className="page-section">
           <Carousel media={carouselMedia} />
+        </section>
+        <section className="page-section">
+          <DestinationsMap />
         </section>
       </div>
     )

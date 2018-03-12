@@ -116,7 +116,7 @@ export default class EventForm extends Component {
   }
   render() {
     const {venues, destinations} = this.props
-    const people = _.range(1, 600)
+    const people = _.range(1, 20)
     const selectPeople = () => people.map((number) => <option value={number}>{number}</option>)
     const venueOptions = () => venues.map((venue) => <option value={venue.venueName}>{venue.venueName}</option>)
     const destinationOptions = () => destinations.map((destination) => <option value={destination.destinationName}>{destination.destinationName}</option>)
