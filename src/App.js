@@ -5,6 +5,7 @@ import AppStore from './Flux/Stores/AppStore'
 import { SiteMenu } from './Components/SiteMenu'
 import { Footer } from './Components/Footer'
 import Loader from './Containers/Auth/Loader'
+import Intercom from 'react-intercom';
 import routes from './routes'
 import 'semantic-ui-css/semantic.min.css'
 import './App.css'
@@ -19,9 +20,6 @@ class App extends Component {
 
   componentDidMount() {
     AppStore.addChangeListener(this._onChange.bind(this))
-    window.Intercom("boot", {
-      app_id: "p5g8itjn"
-    });
   }
   componentWillUnmount() {
     AppStore.removeChangeListener(this._onChange.bind(this))
@@ -53,8 +51,9 @@ class App extends Component {
     const { data } = AppStore
     const { siteNav, venues, destinations } = data
     const loggedIn = data.currentUser ? data.currentUser.loggedIn : false
-    console.log(loggedIn)
-    console.log(data)
+    window.Intercom("boot", {
+      app_id: "p5g8itjn"
+    });
     if (!data.ready) {
       this.getStore()
       return <Loader />
@@ -64,7 +63,8 @@ class App extends Component {
           <div id="App">
             <SiteMenu loggedIn={loggedIn} handleLinkedinAuth={this.handleLinkedinAuth} venues={venues} destinations={destinations} links={siteNav} />
             {routes}
-            {/* <Footer loggedIn={loggedIn} handleLinkedinAuth={this.handleLinkedinAuth} venues={venues} destinations={destinations} links={siteNav} /> */}
+            
+            <Footer loggedIn={loggedIn} handleLinkedinAuth={this.handleLinkedinAuth} venues={venues} destinations={destinations} links={siteNav} />
           </div>
         </BrowserRouter>
       )

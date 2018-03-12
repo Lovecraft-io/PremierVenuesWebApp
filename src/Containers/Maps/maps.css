@@ -7,8 +7,6 @@
   overflow: visible;
 }
 .leaflet-container {
-  height: 100%;
-  overflow: visible;
   height: 600px;
 }
 /* 
