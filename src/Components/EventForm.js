@@ -62,11 +62,18 @@ export default class EventForm extends Component {
     if(currentUser) {
       console.log("Current User")
       console.log(currentUser)
-      data.member = {...currentUser}
+      infoData.member = {...currentUser}
     }
-    this.sendToSlack(infoData)
+    let inquiry = this.formatInquiry(infoData)
+    this.sendToSlack(inquiry)
     this.runSearch(infoData)
-  
+  }
+  formatInquiry(data) {
+    let userData = data.member ? `Premier Venues platform member ${data.member.name} requests information regarding a` : ''
+    let user = userData.length > 0 ? userData : 'A new user on the Premier Venues platform requests information regarding a'
+    let contact = userData.length > 0 ? `They can be reached at ${data.member.email}` : ''
+    let string = `${user} ${data.event} in ${data.location} with ${data.number} of people on ${data.when}. ${contact}`
+    return string
   }
   parseFormAnimationData() {
     const infoFields = document.querySelectorAll('.nl-field-toggle')
@@ -92,7 +99,10 @@ export default class EventForm extends Component {
     console.log(results)
     AppDispatcher.dispatch({
       action: 'add-search-results',
-      data: {...results}
+      data: {
+        searchResults: results,
+        searchParameters: searchData
+      }
     })
   }
   sendToSlack = (data) => {
@@ -128,7 +138,7 @@ export default class EventForm extends Component {
       </select>
       for
        <select value={this.state.value} onChange={this.handleNumberOfPeople}>
-        <option value="0" selected>#</option>
+        <option value="0" selected>number of</option>
         {selectPeople()}
       </select> people
       <br />

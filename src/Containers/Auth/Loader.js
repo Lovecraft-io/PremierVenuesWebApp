@@ -3,10 +3,7 @@ import AppDispatcher from '../../Flux/Dispatchers/AppDispatcher'
 import './auth.css'
 
 export default class Loader extends Component {
-  componentWillMount() {}
-  componentDidMount() {
-    console.log(this.props)
-  }
+
   shouldComponentUpdate(nextProps, nextState) {
     console.log(nextProps)
     if(this.props !== nextProps) {
@@ -14,7 +11,6 @@ export default class Loader extends Component {
     } else {
       return false
     }
-    
   }
   componentDidUpdate(prevProps, prevState) {
     console.log(prevProps)

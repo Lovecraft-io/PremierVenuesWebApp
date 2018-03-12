@@ -1,9 +1,8 @@
 import React from 'react'
 export const ContentPreviewCard = props => {
-  let venue
-  if(props.venue) {
-    venue = {...props.venue.fields}
-  }
+  console.log(props)
+  let {venue} = props
+  console.log(venue)
   const author = (_author) => <div className="author"><img src={_author.photo} /><h2>{_author.name}</h2></div>
   return (
       <div className="ContentPreviewCard__card">

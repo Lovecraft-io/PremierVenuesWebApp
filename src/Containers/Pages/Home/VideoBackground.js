@@ -11,7 +11,7 @@ export const VideoBackground = (props) => (
         width: '100%',
         height: '100%',
       }}
-      src="/bokeh.mp4"
+      src="/bokeh.webm"
     />
   </div>
 )

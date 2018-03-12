@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { Menu, Dropdown } from 'semantic-ui-react'
-
-import { Link, Redirect } from 'react-router-dom'
+import { Menu, Image, Dropdown } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 import AppStore from '../Flux/Stores/AppStore'
 const {data} = AppStore
 
@@ -53,7 +52,7 @@ export const SiteMenu = props => {
   
   return (
     <Menu pointing secondary id="site-menu">
-      <Menu.Item><Link to="/">Premier Venues</Link></Menu.Item>
+      <Menu.Item><Link to="/"><Image src="/logoShadow.png" size="small"/></Link></Menu.Item>
       <Menu.Menu position="right">
         {nav}
         {logInOrOutButton(props)}

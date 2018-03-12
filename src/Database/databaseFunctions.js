@@ -26,7 +26,9 @@ export const DATABASE_FUNCTIONS = {
     let existingUser = false
     let possibleUser = await usersRef.once('value', snapshot => {
       snapshot.forEach(childSnap => {
-        if (childSnap.val().email === incomingUser.email) {
+        console.log(childSnap.val())
+        let databaseUser = childSnap.val()
+        if (databaseUser && (databaseUser.email === incomingUser.email)) {
           existingUser = true
         }
       })

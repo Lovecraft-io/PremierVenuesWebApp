@@ -63,6 +63,13 @@ export const getPageData = page_slug => {
   AppStore.data.currentPage = page
   AppStore.emitChange()
 }
+export const setCurrentUser = (user) => {
+  console.log(user)
+  AppStore.data.currentUser = { ...user }
+  AppStore.data.currentUser.loggedIn = true
+  AppStore.emitChange()
+
+}
 
 const createUser = async profile => {
   let status = await DATABASE_FUNCTIONS.addNewUser(profile)
@@ -71,6 +78,7 @@ const createUser = async profile => {
     AppStore.data.currentUser = { ...profile }
     AppStore.data.currentUser.loggedIn = true
     AppStore.emitChange()
+    localStorage.setItem('currentUser', JSON.stringify(AppStore.data.currentUser))
     return <Redirect to="/" />
   }
 }
@@ -98,6 +106,7 @@ export const authenticateAccessToken = () => {
         AppStore.data.currentUser = { ...profile }
         AppStore.data.currentUser.loggedIn = true
         AppStore.emitChange()
+        localStorage.setItem('currentUser', JSON.stringify(AppStore.data.currentUser))
         return <Redirect to="/" />
       }
     })
@@ -124,10 +133,15 @@ export const getVenueData = (venue) => {
   AppStore.emitChange()
 }
 
-export const addSearchResults = (searchResults) => {
+export const addSearchResults = (data) => {
+  const {searchResults, searchParameters } = data
   console.log(searchResults)
+  console.log(searchParameters)
   AppStore.data.searchResults = searchResults
+  AppStore.data.searchParameters = searchParameters
   AppStore.emitChange()
+  localStorage.setItem('searchResults', JSON.stringify(searchResults))
+  localStorage.setItem('searchParameters', JSON.stringify(searchParameters))
   return <Redirect to="/search/results" />
 
 }

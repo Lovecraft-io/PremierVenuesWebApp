@@ -31,8 +31,13 @@ html {
   z-index: 2000;
   margin: 0;
 }
-#site-menu .right.menu .item .text {
+#site-menu .right.menu .item .text, 
+#site-menu .right.menu .item .text a {
   margin-top: 0;
+  font-family: "Lato";
+  line-height: 1.3;
+  font-weight: 400;
+  font-size: 14px;
 }
 #site-menu li {
   color: white;
@@ -50,6 +55,9 @@ a:visited {
 #App {
   position: relative;
   height: 100%;
+}
+.component {
+  padding-top: 60px;
 }
 
 

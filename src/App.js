@@ -23,13 +23,21 @@ class App extends Component {
   componentWillUnmount() {
     AppStore.removeChangeListener(this._onChange.bind(this))
   }
-  getStore() {
+  getStore(user=false) {
+    if(!user) {
+      AppDispatcher.dispatch({
+        action: 'get-app-store'
+      })
+    }
     AppDispatcher.dispatch({
-      action: 'get-app-store'
+      action: 'get-app-store',
+      user: user
     })
   }
   componentWillMount() {
-    this.getStore()
+    const user = localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')) : false
+    console.log(user)
+    this.getStore(user)
   }
   _onChange() {
     this.setState(AppStore)

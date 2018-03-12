@@ -45,7 +45,7 @@ AppDispatcher.register(payload => {
       break
 
     case 'add-search-results':
-      addSearchResults({ ...payload.data })
+      addSearchResults(payload.data)
       break
 
     default:
