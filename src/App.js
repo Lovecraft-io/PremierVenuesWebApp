@@ -19,6 +19,9 @@ class App extends Component {
 
   componentDidMount() {
     AppStore.addChangeListener(this._onChange.bind(this))
+    window.Intercom("boot", {
+      app_id: "p5g8itjn"
+    });
   }
   componentWillUnmount() {
     AppStore.removeChangeListener(this._onChange.bind(this))

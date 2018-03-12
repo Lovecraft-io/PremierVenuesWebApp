@@ -25,6 +25,7 @@ export default class Home extends Component {
       pageHeader: pageHeader,
       pageContent: pageContent
     })
+    window.Intercom("update")
   }
   componentDidUpdate(prevProps, prevState) {
     const { history } = this.props

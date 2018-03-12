@@ -1,7 +1,7 @@
 .map-container {
   margin-top: 20px;
   height: 600px;
-  height: 100%;
+  
   width: 100%;
   padding: 20px;
   overflow: visible;
@@ -9,6 +9,7 @@
 .leaflet-container {
   height: 100%;
   overflow: visible;
+  height: 600px;
 }
 /* 
 	=====================================================================================================================================
