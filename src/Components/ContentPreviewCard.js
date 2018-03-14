@@ -1,4 +1,6 @@
 import React from 'react'
+import { Icon } from 'semantic-ui-react'
+
 export const ContentPreviewCard = props => {
   console.log(props)
   let {venue} = props
@@ -22,24 +24,15 @@ export const ContentPreviewCard = props => {
             <span>{venue.fields.venueDescription}</span>
           </p>
         </div>
-        <h5 className='ContentPreviewCard__right_textBg'>{props.city}</h5>
-        <h6>{venue.fields.venueTitle}</h6>
         <ul>
-          <li>
-            <i className="fa fa-eye fa-2x" />
-          </li>
-          <li>
-            <i className="fa fa-heart-o fa-2x" />
-          </li>
-          <li>
-            <i className="fa fa-envelope-o fa-2x" />
-          </li>
-          <li>
-            <i className="fa fa-share-alt fa-2x" />
-          </li>
+          <li><Icon name='share' /></li>
+          <li><Icon name='like' /></li>
+          <li><Icon name='bookmark outline' /></li>
+          <li><Icon name='thumb tack' /></li>
         </ul>
         <div className="fab">
-          <i className="fa fa-arrow-down fa-3x"> </i>
+        <h5 className='ContentPreviewCard__right_textBg'>{props.city}</h5>
+        <h6>{venue.fields.venueTitle}</h6>
         </div>
       </div>
   )

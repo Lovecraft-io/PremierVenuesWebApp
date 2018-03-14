@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Grid, Image, Segment } from 'semantic-ui-react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import './venue.css'
 export default class Venues extends Component {
@@ -8,32 +8,40 @@ export default class Venues extends Component {
     console.log(this.props)
     const { venues } = this.props
     return (
-      <Grid celled="internally">
+      <div className="Venues component" id="Venues">
         {this.props.venues.map(venue => (
-          <Grid.Row>
-            <Grid.Column width={3}>
-              <Image
-                src={venue.venueMedia ? venue.venueMedia[0].fields.file.url : null}
-              />
-            </Grid.Column>
-            <Grid.Column width={10}>
-              <Segment>
-                <h1><Link to={'venues/' + venue.venueTitle}>{venue.venueTitle}</Link></h1>
+          <div
+            className="venue-card"
+            style={{
+              backgroundImage: `url(${venue.featuredImage
+                ? venue.featuredImage.fields.file.url
+                : null})`
+            }}>
+            <div className="title-content">
+              <h3>
+                <Link to={'venues/' + venue.venueTitle}>
+                  {venue.venueTitle}
+                </Link>
+              </h3>
+              <hr />
+              <div className="intro">
                 <ReactMarkdown source={venue.venueBlueprintDetails} />
-                <ReactMarkdown source={venue.venueDescription} />
-              </Segment>
-              <Segment>
-              
-              </Segment>
-            </Grid.Column>
-            <Grid.Column width={3}>
-              <Image
-                src={venue.venueMedia ? venue.venueMedia[1].fields.file.url : null}
-              />
-            </Grid.Column>
-          </Grid.Row>
+              </div>
+            </div>
+            <div className="card-info">
+              <ReactMarkdown source={venue.venueDescription} />
+            </div>
+            <div className="utility-info">
+              <ul className="utility-list">
+                <li className="comments">12</li>
+                <li className="date">03.12.2015</li>
+              </ul>
+            </div>
+            <div className="gradient-overlay" />
+            <div className="color-overlay" />
+          </div>
         ))}
-      </Grid>
+      </div>
     )
   }
 }

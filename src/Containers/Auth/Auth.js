@@ -1,4 +1,5 @@
 import auth0 from 'auth0-js'
+import AppDispatcher from '../../Flux/Dispatchers/AppDispatcher'
 
 export default class Auth {
   auth0 = new auth0.WebAuth({
@@ -40,7 +41,10 @@ export default class Auth {
     localStorage.setItem('access_token', authResult.accessToken)
     localStorage.setItem('id_token', authResult.idToken)
     localStorage.setItem('expires_at', expiresAt)
-    return authResult
+    AppDispatcher.dispatch({
+      action: 'authenticate-access-token'
+    })
+    // return authResult
   }
   getAccessToken() {
     const accessToken = localStorage.getItem('access_token')
