@@ -21,6 +21,7 @@
     "react-leaflet": "^1.8.2",
     "react-markdown": "^3.3.0",
     "react-owl-carousel2": "^0.3.0",
+    "react-parallax": "^1.6.1",
     "react-router-dom": "^4.2.2",
     "react-svg-buttons": "^0.4.0",
     "react-video-cover": "^1.1.0",

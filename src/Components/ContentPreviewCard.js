@@ -9,21 +9,21 @@ export const ContentPreviewCard = props => {
         <div className="ContentPreviewCard__thumbnail">
           <img
             className="ContentPreviewCard__left"
-            src={venue.featuredImage.fields.file.url}
+            src={venue.fields.featuredImage.fields.file.url}
           />
         </div>
         <div className="ContentPreviewCard__right">
-          <h1>{venue.venueTitle}</h1>
+          <h1>{venue.fields.venueTitle}</h1>
          
           <div className="ContentPreviewCard__separator" />
           <p>
-            <span>{venue.venueBlueprintDetails}</span>
+            <span>{venue.fields.venueBlueprintDetails}</span>
             <br/>
-            <span>{venue.venueDescription}</span>
+            <span>{venue.fields.venueDescription}</span>
           </p>
         </div>
         <h5 className='ContentPreviewCard__right_textBg'>{props.city}</h5>
-        <h6>{venue.venueTitle}</h6>
+        <h6>{venue.fields.venueTitle}</h6>
         <ul>
           <li>
             <i className="fa fa-eye fa-2x" />

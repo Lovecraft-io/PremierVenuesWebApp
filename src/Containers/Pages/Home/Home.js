@@ -4,6 +4,7 @@ import AppStore from '../../../Flux/Stores/AppStore'
 import { Carousel } from '../../../Components/Carousel'
 import EventForm from '../../../Components/EventForm'
 import { VideoBackground } from './VideoBackground'
+// import { Parallax, Background } from 'react-parallax';
 import DestinationsMap from '../../Maps/DestinationsMap'
 import _ from 'lodash'
 import './home.css'

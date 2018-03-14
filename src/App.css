@@ -246,6 +246,32 @@ a:visited {
   border-radius: 50%;
 }
 
+.owl-item .slide {
+  position: relative;
+}
+.owl-item .slide_content {
+  position: absolute;
+  left: 10%;
+  top: 30%;
+  background: #fff;
+  color: #333;
+  z-index: 3;
+  width: max-content;
+  text-align: left;
+  padding: 30px;
+}
+.owl-item .slide_text {
+/* padding: 30px; */
+}
+.owl-item .slide img {
+  position: relative;
+  z-index: -1;
+}
+.owl-item .slide .slide_content {
+  width: 50%;
+
+}
+
 /* 
 	=====================================================================================================================================
 

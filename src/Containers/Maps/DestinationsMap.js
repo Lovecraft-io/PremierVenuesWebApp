@@ -59,7 +59,7 @@ export default class DestinationsMap extends Component {
                       <h3>{destination.destinationName}</h3>
                     </header>
                     <section className="card_popup__bottom">
-                    <p>{destination.destinationDescription}</p>
+                    <p>{destination.destinationBlueprintDetails}</p>
                       <ul>
                         {destination.destinationVenues.map(venue => (
                           <li>

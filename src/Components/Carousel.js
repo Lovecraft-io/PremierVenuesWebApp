@@ -60,10 +60,12 @@ const events = {
     <OwlCarousel options={options} events={events}>
       {props.slides
         ? props.slides.map((slide, i) => 
-          <div>
+          <div className="slide">
+            <div className="slide_content">
             <h3>{slide.fields.slideHeader}</h3>
-            <ReactMarkdown source={slide.fields.slideContent} />
-            <img src={slide.fields.slideImage.fields.file.url + '?fit=pad&w=1440&h=600'} />
+            <ReactMarkdown source={slide.fields.slideContent} className="slide_text"/>
+            </div>
+            <img src={slide.fields.slideImage.fields.file.url + '?fit=fill&w=1440&h=600'} />
           </div>)
         : null}
     </OwlCarousel>

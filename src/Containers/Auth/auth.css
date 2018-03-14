@@ -476,11 +476,12 @@
             transform: rotateY(90deg) translateZ(150px);
   }
 }
-.text {
-  margin-top: 450px;
+/* .text {
   color: #f27777;
   font-size: 1.5rem;
   width: 100%;
   font-weight: 600;
+  margin-top: 450px;
   text-align: center;
-}
+} */
+
