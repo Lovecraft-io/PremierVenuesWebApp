@@ -58,7 +58,7 @@ const events = {
   return (
     <OwlCarousel options={options} events={events}>
       {props.media
-        ? props.media.map((item, i) => <img src={item.fields.file.url} />)
+        ? props.media.map((item, i) => <img src={item.fields.file.url + '?fit=pad&w=1440&h=600'} />)
         : null}
     </OwlCarousel>
   )

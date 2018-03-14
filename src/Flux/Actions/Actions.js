@@ -16,6 +16,7 @@ export const getStore = () => {
   })
   CMS.getEntries().then(response => {
     const { items } = response
+    console.log(items)
     const pages = _.filter(
       items,
       item => item.sys.contentType.sys.id == 'page'
@@ -23,7 +24,19 @@ export const getStore = () => {
     const blogPosts = _.filter(
       items,
       item => item.sys.contentType.sys.id == 'blogPost'
-    ).map(blogPost => (blogPost = { ...blogPost.fields }))
+    ).map(blogPost => {
+      let formattedBlogPost = { ...blogPost.fields }
+      formattedBlogPost.id = blogPost.sys.id 
+      formattedBlogPost.createdAt = blogPost.sys.createdAt
+      return formattedBlogPost
+    })
+
+    const sortedPosts = blogPosts.sort((a, b) => {
+      return moment.utc(a.createdAt).diff(moment.utc(b.createdAt))
+    })
+
+    console.log(blogPosts)
+    console.log(sortedPosts)
 
     const venues = _.filter(
       items,
@@ -47,7 +60,7 @@ export const getStore = () => {
     pages.forEach(page => (AppStore.data.pages[page.pageSlug] = page))
     AppStore.data.venues = venues
     AppStore.data.destinations = destinations
-    AppStore.data.blogPosts = blogPosts
+    AppStore.data.blogPosts = sortedPosts
     AppStore.data.ready = true
     console.log(AppStore.data)
 
@@ -113,6 +126,18 @@ export const authenticateAccessToken = () => {
   }
 }
 
+export const addSearchResults = (data) => {
+  const {searchResults, searchParameters } = data
+  console.log(searchResults)
+  console.log(searchParameters)
+  AppStore.data.searchResults = searchResults
+  AppStore.data.searchParameters = searchParameters
+  AppStore.emitChange()
+  localStorage.setItem('searchResults', JSON.stringify(searchResults))
+  localStorage.setItem('searchParameters', JSON.stringify(searchParameters))
+  return <Redirect to="/search/results" />
+}
+
 export const getDestinationData = (destination) => {
   console.log(destination)
   const {destinations} = AppStore.data 
@@ -127,23 +152,17 @@ export const getVenueData = (venue) => {
   console.log(venue)
   const {venues} = AppStore.data
   const currentVenue = _.find(venues, (d) => d.venueTitle === venue)
-  console.log(currentVenue)
-
   AppStore.data.currentVenue = currentVenue
   AppStore.emitChange()
 }
 
-export const addSearchResults = (data) => {
-  const {searchResults, searchParameters } = data
-  console.log(searchResults)
-  console.log(searchParameters)
-  AppStore.data.searchResults = searchResults
-  AppStore.data.searchParameters = searchParameters
+export const getBlogPostData = (blogPost) => {
+  console.log(blogPost)
+  const {blogPosts} = AppStore.data 
+  const currentBlogPost = _.find(blogPosts, (bp) => bp.blogPostTitle === blogPost)
+  console.log(currentBlogPost)
+  AppStore.data.currentBlogPost = currentBlogPost
   AppStore.emitChange()
-  localStorage.setItem('searchResults', JSON.stringify(searchResults))
-  localStorage.setItem('searchParameters', JSON.stringify(searchParameters))
-  return <Redirect to="/search/results" />
-
 }
 
 export const createUserWithLinkedIn = data => {}

@@ -52,9 +52,9 @@ export default class DestinationSpecific extends Component {
     const {destination} = this.props.match.params
     const {destinationVenues} = currentDestination
     const venuesList = (currentDestination.destinationVenues && currentDestination.destinationVenues.length > 0) ? destinationVenues.map((venue) =>  <ContentPreviewCard venue={venue} city={destination}/> ) : null
-    
+    console.log(currentDestination)
     return (
-      <div id="DestinationSpecific" style={{backgroundImage: `url(${currentDestination.destinationFeaturedImage.fields.file.url})`}}>
+      <div id="DestinationSpecific" style={{backgroundImage: `url(${currentDestination.featuredImage[0].fields.file.url})`}}>
         <Container fluid >
           <Header
             as="h1"

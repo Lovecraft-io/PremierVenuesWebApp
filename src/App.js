@@ -64,7 +64,7 @@ class App extends Component {
             <SiteMenu loggedIn={loggedIn} handleLinkedinAuth={this.handleLinkedinAuth} venues={venues} destinations={destinations} links={siteNav} />
             {routes}
             
-            <Footer loggedIn={loggedIn} handleLinkedinAuth={this.handleLinkedinAuth} venues={venues} destinations={destinations} links={siteNav} />
+            {/* <Footer loggedIn={loggedIn} handleLinkedinAuth={this.handleLinkedinAuth} venues={venues} destinations={destinations} links={siteNav} /> */}
           </div>
         </BrowserRouter>
       )

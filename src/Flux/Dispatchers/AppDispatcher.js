@@ -7,6 +7,7 @@ import {
   getPageData,
   getDestinationData,
   getVenueData,
+  getBlogPostData,
   addSearchResults
 } from '../Actions/Actions'
 
@@ -38,6 +39,10 @@ AppDispatcher.register(payload => {
 
     case 'get-venue-data':
       getVenueData(payload.venue)
+      break
+
+    case 'get-blogPost-data':
+      getBlogPostData(payload.blogPost)
       break
 
     case 'create-user-linkedin':

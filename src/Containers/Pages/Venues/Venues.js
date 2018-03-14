@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Grid, Image, Segment } from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
-// import './venues.css'
+import './venue.css'
 export default class Venues extends Component {
   render() {
     console.log(this.props)
