@@ -14,7 +14,7 @@ import Login from './Containers/Auth/Login'
 import SignUp from './Containers/Auth/SignUp'
 import Loader from './Containers/Auth/Loader'
 import Auth from './Containers/Auth/Auth'
-import SearchResults from './Components/SearchResults'
+import SearchResults from './Components/Search/SearchResults'
 
 const routesArray = [
   {

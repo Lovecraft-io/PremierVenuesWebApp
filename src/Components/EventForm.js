@@ -41,7 +41,6 @@ export default class EventForm extends Component {
     const NLForm = window.NLForm
     const form = new NLForm(document.getElementById( 'nl-form'))
     this.parseFormAnimationData()
-    
   }
   handleSubmit(e) {
     e.preventDefault()
