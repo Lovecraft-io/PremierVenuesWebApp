@@ -21,6 +21,7 @@ export const getStore = () => {
       items,
       item => item.sys.contentType.sys.id == 'page'
     ).map(page => (page = { ...page.fields }))
+
     const blogPosts = _.filter(
       items,
       item => item.sys.contentType.sys.id == 'blogPost'
@@ -34,10 +35,10 @@ export const getStore = () => {
     const sortedPosts = blogPosts.sort((a, b) => {
       return moment.utc(a.createdAt).diff(moment.utc(b.createdAt))
     })
+    // pages.forEach((page) => page.modules ? page.modules.map(module => {...module.fields}) : page = page)
 
-    console.log(blogPosts)
-    console.log(sortedPosts)
-
+    console.log(pages)
+    
     const venues = _.filter(
       items,
       item => item.sys.contentType.sys.id == 'venue'

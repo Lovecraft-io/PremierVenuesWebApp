@@ -134,7 +134,7 @@ p {
   color: #a9b1b3;
 }
 
-a {
+.BlogPost a {
   padding: 0.5em 1em;
   font-size: 0.8em;
   color: #a9b1b3;
@@ -145,7 +145,7 @@ a {
   -webkit-transition: all 0.3s ease-in;
   transition: all 0.3s ease-in;
 }
-a:hover, a:active, a:focus {
+.BlogPost a:hover, .BlogPost a:active, .BlogPost a:focus {
   color: #fff;
   background-color: #a9b1b3;
 }

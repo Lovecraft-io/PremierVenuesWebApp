@@ -1,30 +1,20 @@
 import React, { Component } from 'react'
 import AppDispatcher from '../../../Flux/Dispatchers/AppDispatcher'
+import AppStore from '../../../Flux/Stores/AppStore'
 import { Carousel } from '../../../Components/Carousel'
 import EventForm from '../../../Components/EventForm'
 import { VideoBackground } from './VideoBackground'
 import DestinationsMap from '../../Maps/DestinationsMap'
+import _ from 'lodash'
 import './home.css'
 import '../pages.css'
 
 export default class Home extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      carouselMedia: [],
-      pageHeader: '',
-      pageContent: ''
-    }
+  
   }
   componentWillMount() {
-    const { Home } = this.props.pages
-    const { modules, pageContent, pageHeader } = Home
-    const { carouselMedia } = modules[0].fields
-    this.setState({
-      carouselMedia: carouselMedia,
-      pageHeader: pageHeader,
-      pageContent: pageContent
-    })
     window.Intercom("update")
   }
   componentDidUpdate(prevProps, prevState) {
@@ -35,8 +25,11 @@ export default class Home extends Component {
   }
 
   render() {
-    const { pageContent, pageHeader, carouselMedia } = this.state
-    const { venues, destinations } = this.props
+    const { venues, destinations } = AppStore.data 
+    const {Home} = AppStore.data.pages
+    let carousel = _.find(Home.modules, (mod) => mod.fields.type === 'Carousel')
+    carousel = {...carousel.fields}
+    console.log(carousel)
     return (
       <div id="Home" className="">
         <section className="page-section">
@@ -44,7 +37,7 @@ export default class Home extends Component {
           <EventForm venues={venues} destinations={destinations} />
         </section>
         <section className="page-section">
-          <Carousel media={carouselMedia} />
+          <Carousel slides={carousel.carouselSlides} />
         </section>
         <section className="page-section">
           <DestinationsMap />
