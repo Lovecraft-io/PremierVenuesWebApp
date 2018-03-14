@@ -49,8 +49,10 @@ class App extends Component {
 
   render() {
     const { data } = AppStore
-    const { siteNav, venues, destinations } = data
-    const loggedIn = data.currentUser ? data.currentUser.loggedIn : false
+    const { siteNav, venues, destinations, currentUser } = data
+    const _currentUser = currentUser ? currentUser : JSON.parse(localStorage.getItem('currentUser'))
+    const loggedIn = _currentUser ? _currentUser.loggedIn : false
+
     window.Intercom("boot", {
       app_id: "p5g8itjn"
     });
@@ -63,8 +65,7 @@ class App extends Component {
           <div id="App">
             <SiteMenu loggedIn={loggedIn} handleLinkedinAuth={this.handleLinkedinAuth} venues={venues} destinations={destinations} links={siteNav} />
             {routes}
-            
-            {/* <Footer loggedIn={loggedIn} handleLinkedinAuth={this.handleLinkedinAuth} venues={venues} destinations={destinations} links={siteNav} /> */}
+            <Footer loggedIn={loggedIn} handleLinkedinAuth={this.handleLinkedinAuth} venues={venues} destinations={destinations} links={siteNav} />
           </div>
         </BrowserRouter>
       )

@@ -81,6 +81,7 @@ export const setCurrentUser = (user) => {
   console.log(user)
   AppStore.data.currentUser = { ...user }
   AppStore.data.currentUser.loggedIn = true
+  localStorage.setItem('currentUser', JSON.stringify(AppStore.data.currentUser))
   AppStore.emitChange()
 
 }

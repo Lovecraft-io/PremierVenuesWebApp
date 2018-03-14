@@ -43,7 +43,7 @@ export const Carousel = props => {
     items: 1,
     nav: true,
     loop: true,
-    // navText : [`${<MorphButton type="arrowLeft" />}`,`${<MorphButton type="arrowRight" />}`],
+    navText : ['<i aria-hidden="true" class="carousel-arrow angle left disabled icon"></i>', '<i aria-hidden="true" class="carousel-arrow angle right disabled icon"></i>'],
     autoplay: true
 };
 
