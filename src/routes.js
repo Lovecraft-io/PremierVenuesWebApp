@@ -97,8 +97,10 @@ export default(
         <Route exact path={route.path} render={(props) => {
             if(route.path === '/callback/') {
               handleAuthentication(props)
+              window.Intercom("update")
               return <route.component key={i} {...props} {...data}/>
             } else {
+              window.Intercom("update")
               return <route.component key={i} {...props} {...data}/>
             }
           }

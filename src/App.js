@@ -19,6 +19,9 @@ class App extends Component {
   }
 
   componentDidMount() {
+    window.Intercom("boot", {
+      app_id: "epird752"
+    })
     AppStore.addChangeListener(this._onChange.bind(this))
   }
   componentWillUnmount() {
@@ -52,10 +55,6 @@ class App extends Component {
     const { siteNav, venues, destinations, currentUser } = data
     const _currentUser = currentUser ? currentUser : JSON.parse(localStorage.getItem('currentUser'))
     const loggedIn = _currentUser ? _currentUser.loggedIn : false
-
-    window.Intercom("boot", {
-      app_id: "p5g8itjn"
-    });
     if (!data.ready) {
       this.getStore()
       return <Loader />

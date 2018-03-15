@@ -63,8 +63,10 @@ export default class EventForm extends Component {
       console.log(currentUser)
       infoData.member = {...currentUser}
     }
-    let inquiry = this.formatInquiry(infoData)
-    this.sendToSlack(inquiry)
+    if (infoData.member) {
+      let inquiry = this.formatInquiry(infoData)
+      this.sendToSlack(inquiry)
+    }
     this.runSearch(infoData)
   }
   formatInquiry(data) {
