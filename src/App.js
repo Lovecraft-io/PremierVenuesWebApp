@@ -19,9 +19,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-    window.Intercom("boot", {
-      app_id: "epird752"
-    })
+    // window.Intercom("boot", {
+    //   app_id: "epird752"
+    // })
     AppStore.addChangeListener(this._onChange.bind(this))
   }
   componentWillUnmount() {

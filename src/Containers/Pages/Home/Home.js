@@ -16,13 +16,20 @@ export default class Home extends Component {
   
   }
   componentWillMount() {
-    window.Intercom("update")
+    
   }
   componentDidUpdate(prevProps, prevState) {
     const { history } = this.props
     if (!prevProps.searchResults && this.props.searchResults) {
       history.push('/search/results')
     }
+  }
+  componentDidMount() {
+    this.greetReturningUser()
+  }
+  greetReturningUser() {
+    const {currentUser} = AppStore.data
+    return (currentUser && currentUser.loggedIn) ? window.Intercom('showNewMessage', `Welcome back ${currentUser.name}`) : false
   }
 
   render() {

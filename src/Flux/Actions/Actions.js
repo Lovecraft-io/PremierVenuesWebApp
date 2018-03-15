@@ -94,6 +94,10 @@ const createUser = async profile => {
     AppStore.data.currentUser.loggedIn = true
     AppStore.emitChange()
     localStorage.setItem('currentUser', JSON.stringify(AppStore.data.currentUser))
+    window.Intercom('boot', {
+      app_id: 'epird752',
+      ...AppStore.data.currentUser
+   })
     return <Redirect to="/" />
   }
 }
@@ -122,6 +126,10 @@ export const authenticateAccessToken = () => {
         AppStore.data.currentUser.loggedIn = true
         AppStore.emitChange()
         localStorage.setItem('currentUser', JSON.stringify(AppStore.data.currentUser))
+        window.Intercom('boot', {
+          app_id: 'epird752',
+          ...AppStore.data.currentUser
+       })
         return <Redirect to="/" />
       }
     })
