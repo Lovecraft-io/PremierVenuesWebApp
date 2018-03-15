@@ -41,17 +41,18 @@ ul {
   font-size: 1.5em;
   padding: 20px!important;
 }
-#site-menu .right.menu .item .text, 
-#site-menu .right.menu .item .text a {
-  margin-top: 0;
-  font-family: "Lato";
-  line-height: 1.3;
-  font-weight: 400;
-  font-size: 14px;
-}
-#site-menu .item a, #site-menu .item span, #site-menu .item .text {
+
+#site-menu .item a, #site-menu .item span, #site-menu .item .text,
+#Footer .item a, #Footer .item span, #Footer .item .text, #Footer h4.inverted.header {
   color: white;
   letter-spacing: 2px;
+  line-height: 20px;
+  font-weight: lighter;
+  font-family: "Lato";
+  text-transform: capitalize;
+}
+#site-menu .dropdown .item a {
+  color: #333;
   font-weight: lighter;
 }
 a,
@@ -633,4 +634,153 @@ input:focus::-ms-input-placeholder {
   margin-top: 0!important;
   width: 100%;
   height: auto;
+}
+
+#footer-form-wrapper {
+  margin-bottom: 50px;
+}
+.footer-form .text-input, .footer-form .textarea, .footer-form .label, .footer-form .button {
+  padding: 1em 1.5em;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  outline: none;
+  line-height: normal;
+  border: 1px solid transparent;
+  border-radius: 0;
+}
+
+.footer-form .text-input, .footer-form .textarea {
+  font: inherit;
+  line-height: normal;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: block;
+  padding-left: 0;
+  border-bottom-color: rgba(255, 255, 255, 0.3);
+  background: transparent;
+  outline: none;
+  color: black;
+}
+.footer-form .text-input:placeholder, .footer-form .textarea:placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+.footer-form .text-input:-webkit-autofill, .footer-form .textarea:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+          box-shadow: 0 0 0px 1000px white inset;
+  border-top-color: white;
+  border-left-color: white;
+  border-right-color: white;
+}
+.footer-form .error.text-input, .footer-form .error.textarea, .error .footer-form .text-input, .footer-form .error .text-input, .error .footer-form .textarea, .footer-form .error .textarea {
+  border-color: transparent transparent red transparent;
+}
+.footer-form:not(.has-floated-label) .text-input:active, .footer-form:not(.has-floated-label) .textarea:active, .footer-form:not(.has-floated-label) .text-input:focus, .footer-form:not(.has-floated-label) .textarea:focus {
+  border-color: transparent transparent black transparent;
+}
+
+.footer-form .label {
+  position: absolute;
+  z-index: 10;
+  pointer-events: none;
+  padding-left: 0;
+}
+
+.footer-form .label {
+  top: 0;
+  left: 0;
+  color: rgba(255, 255, 255, 0.7);
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
+}
+.active .footer-form .label, .footer-form .active .label {
+  font-size: 0.75em;
+  line-height: 1;
+  font-weight: 600;
+  text-transfooter-form: uppercase;
+  padding: 0;
+  color: rgba(255, 255, 255, 0.7);
+  background: white;
+}
+.focus .footer-form .label, .footer-form .focus .label {
+  color: #fff;
+}
+
+.footer-form.has-floated-label .field:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  border-bottom: 1px solid #fff;
+  -webkit-transition: width 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  transition: width 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.footer-form.has-floated-label .field.focus:after {
+  width: 100%;
+}
+
+.footer-form .button {
+  font: inherit;
+  line-height: normal;
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  text-transfooter-form: uppercase;
+  text-align: center;
+  letter-spacing: 0.1428571429em;
+  clear: both;
+  display: block;
+  margin: auto;
+  width: auto;
+}
+.footer-form .button:hover, .footer-form .button:focus, .footer-form .button:active {
+  color: black;
+  background: white;
+}
+.footer-form .button:active {
+  position: relative;
+  top: 1px;
+  left: 1px;
+}
+
+.footer-form {
+  max-width: 50em;
+  margin: 0 auto;
+  padding: 1em 2em;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  overflow: hidden;
+}
+.footer-form .field {
+  position: relative;
+  width: 100%;
+  margin-bottom: 1.5em;
+  float: left;
+}
+.footer-form .field:last-child {
+  clear: both;
+  display: block;
+  margin: 20px auto 0;
+  width: 100%;
+}
+@media screen and (min-width: 40em) {
+  .footer-form .field.half {
+    width: calc(50% - 2em);
+    margin-right: 2em;
+  }
+  .footer-form .field.half + .half {
+    margin-left: 2em;
+    margin-right: 0;
+  }
+}
+
+.footer-form .textarea {
+  max-width: 100%;
+}
+
+svg path {
+  fill: black;
 }

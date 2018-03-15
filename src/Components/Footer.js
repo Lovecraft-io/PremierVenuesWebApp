@@ -14,6 +14,7 @@ import {
   Segment,
   Visibility
 } from 'semantic-ui-react'
+import ContactForm from './ContactForm'
 
 const { data } = AppStore
 const logInOrOutButton = props =>
@@ -86,23 +87,36 @@ export const Footer = props => {
     renderNavItems(link, props.venues, props.destinations)
   )
   return (
-    <Segment
-      id="Footer"
-      inverted
-      style={{ margin: '5em 0em 0em', padding: '5em 0em' }}
-      vertical>
+    <Segment id="Footer" inverted style={{ padding: '5em 0em' }} vertical>
       <Container textAlign="center">
+        <ContactForm />
+        <Divider inverted section />
         <Grid columns={4} divided stackable inverted>
           <Grid.Row>
             <Grid.Column>
               <Header inverted as="h4" content="Premier Venues" />
+              <List link inverted>
+                <List.Item>
+                  <Link
+                    to='/about'>
+                    About
+                  </Link>
+                </List.Item>
+                <List.Item>
+                  <Link
+                    to='/blog'>
+                    Blog
+                  </Link>
+                </List.Item>
+              </List>
             </Grid.Column>
             <Grid.Column>
               <Header inverted as="h4" content="Destinations" />
               <List link inverted>
                 {props.destinations.map(destination => (
                   <List.Item>
-                    <Link to={`/destinations/${destination.destinationName}`}
+                    <Link
+                      to={`/destinations/${destination.destinationName}`}
                       onClick={e => handleRedirect(e)}>
                       {destination.destinationName}
                     </Link>
@@ -111,17 +125,18 @@ export const Footer = props => {
               </List>
             </Grid.Column>
             <Grid.Column>
-            <Header inverted as="h4" content="Venues" />
-            <List link inverted>
-              {props.venues.map(venue => (
-                <List.Item>
-                  <Link to={`/venues/${venue.venutTitle}`}
-                    onClick={e => handleRedirect(e)}>
-                    {venue.venueTitle}
-                  </Link>
-                </List.Item>
-              ))}
-            </List>
+              <Header inverted as="h4" content="Venues" />
+              <List link inverted>
+                {props.venues.map(venue => (
+                  <List.Item>
+                    <Link
+                      to={`/venues/${venue.venutTitle}`}
+                      onClick={e => handleRedirect(e)}>
+                      {venue.venueTitle}
+                    </Link>
+                  </List.Item>
+                ))}
+              </List>
             </Grid.Column>
             <Grid.Column>
               <Header inverted as="h4" content="Account" />
@@ -131,10 +146,9 @@ export const Footer = props => {
           </Grid.Row>
         </Grid>
         <Divider inverted section />
-        Premier Venues
         <List horizontal inverted divided link>
-          <List.Item as="a" href="#">
-            Site Map
+          <List.Item as="a" href="/">
+            Premier Venues
           </List.Item>
           <List.Item as="a" href="#">
             Contact Us

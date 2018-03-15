@@ -29,7 +29,7 @@ export default class Home extends Component {
   }
   greetReturningUser() {
     const {currentUser} = AppStore.data
-    return (currentUser && currentUser.loggedIn) ? window.Intercom('showNewMessage', `Welcome back ${currentUser.name}`) : false
+    return (currentUser && currentUser.loggedIn) ? window.Intercom('showMessages') : false
   }
 
   render() {
