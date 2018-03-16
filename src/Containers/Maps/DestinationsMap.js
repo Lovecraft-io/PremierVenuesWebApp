@@ -9,7 +9,14 @@ export default class DestinationsMap extends Component {
   state = {
     lat: 51.505,
     lng: -0.09,
-    zoom: 4,
+    zoom: 3,
+  }
+  componentDidMount() {
+    console.log(this)
+    const {leafletElement} = this.refs.DestinationMap 
+    leafletElement.scrollWheelZoom.disable()
+    leafletElement.boxZoom.disable()
+    leafletElement.keyboard.disable()
   }
   handleZoomControl = (e) => {
     console.log(e)
@@ -39,7 +46,7 @@ export default class DestinationsMap extends Component {
     console.log(destinationMarkers)
     return (
       <div className="map-container" id="DestinationsMap">
-        <Map center={position} zoom={this.state.zoom} onSCroll={this.handleZoomControl} zoomControl={false}>
+        <Map ref={'DestinationMap'} center={position} zoom={this.state.zoom} onSCroll={this.handleZoomControl} zoomControl={false}>
           <TileLayer
             attribution="&copy; <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> &copy; <a href='http://cartodb.com/attributions'>CartoDB</a>"
             url="https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png"

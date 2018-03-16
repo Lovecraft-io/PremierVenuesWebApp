@@ -15,6 +15,18 @@
 *:after {
   box-sizing: inherit;
 }
+body {
+  font-family: 'Lato', sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Merriweather', serif;
+}
+p {
+  font-size: 16px;
+  letter-spacing: 1px;
+  font-weight: 300;
+
+}
 ul {
   list-style: none;
   padding: 0;
@@ -125,6 +137,8 @@ a:visited {
   -webkit-box-shadow: 10px 10px 93px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 10px 10px 93px 0px rgba(0, 0, 0, 0.75);
   box-shadow: 10px 10px 93px 0px rgba(0, 0, 0, 0.75);
+  position: relative;
+  z-index: 1;
 }
 
 /* Image on the left side */
@@ -255,27 +269,24 @@ margin: 0;
   position: absolute;
   width: 100%;
   /* z-index: 200; */
-  top: 30%;
+  top: 45%;
 }
 .owl-prev {
   position: absolute;
   padding: 10px;
   font-size: 20px;
   color: #000;
-  box-shadow: 5px 5px 5px rgba(0,0,0,0.7);
-  background: #332979;
-  border-radius: 50%;
+  background: #fff;
+  border: solid 1px #000;
   left: 2%;
 }
 .owl-next {
   position: absolute;
   padding: 10px;
-  color: #000;
   font-size: 20px;
-  box-shadow: 5px 5px 5px rgba(0,0,0,0.7);
-  color: white;
-  background: #332979;
-  border-radius: 50%;
+  color: #000;
+  background: #fff;
+  border: solid 1px #000;
   right: 2%;
 }
 .owl-carousel {
@@ -309,6 +320,7 @@ margin: 0;
 
 .owl-item .slide {
   position: relative;
+  height: 100%;
 }
 .owl-item .slide_content {
   position: absolute;
@@ -320,6 +332,9 @@ margin: 0;
   width: max-content;
   text-align: left;
   padding: 30px;
+}
+.slide_content h3 {
+  font-size: 36px;
 }
 .owl-item .slide_text {
 /* padding: 30px; */
@@ -346,8 +361,10 @@ margin: 0;
   width: 100%;
   margin: 0.3em auto 0 auto;
   font-size: 4em;
+  font-weight: 300!important;
   line-height: 1.5;
   color: white;
+  font-family: 'Merriweather', serif;
 }
 
 .nl-form ul {
@@ -661,10 +678,14 @@ input:focus::-ms-input-placeholder {
           box-sizing: border-box;
   display: block;
   padding-left: 0;
+  text-indent: 60px;
   border-bottom-color: rgba(255, 255, 255, 0.3);
   background: transparent;
   outline: none;
-  color: black;
+  color: white;
+}
+.footer-form .textarea {
+  padding: 1em 1.5em;
 }
 .footer-form .text-input:placeholder, .footer-form .textarea:placeholder {
   color: rgba(255, 255, 255, 0.7);

@@ -24,9 +24,6 @@ export default class Venues extends Component {
                 </Link>
               </h3>
               <hr />
-              <div className="intro">
-                <ReactMarkdown source={venue.venueBlueprintDetails} />
-              </div>
             </div>
             <div className="card-info">
               <ReactMarkdown source={venue.venueDescription} />

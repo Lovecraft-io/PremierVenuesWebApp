@@ -25,7 +25,7 @@ class App extends Component {
   componentWillUnmount() {
     AppStore.removeChangeListener(this._onChange.bind(this))
   }
-  getStore(user=false) {
+  getStore() {
     AppDispatcher.dispatch({
       action: 'get-app-store'
     })
@@ -38,7 +38,7 @@ class App extends Component {
   }
   componentWillMount() {
     const user = localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')) : false
-    console.log(user)
+    this.getStore()
     if(user) {
       this.setCurrentUser(user)
     }
@@ -55,6 +55,7 @@ class App extends Component {
 
   render() {
     const { data } = AppStore
+    console.log(data)
     const { siteNav, venues, destinations, currentUser } = data
     const _currentUser = currentUser ? currentUser : JSON.parse(localStorage.getItem('currentUser'))
     const loggedIn = _currentUser ? _currentUser.loggedIn : false

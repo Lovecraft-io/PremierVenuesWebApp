@@ -39,27 +39,52 @@ export default class VenueSpecific extends Component {
     const { data } = AppStore
     const { currentVenue } = data
     return (
-      <div id="VenueSpecific" className="page-section">
-        <div className="section_background__full">
-          <div className="section_background__full__left" />
-          <div className="section_background__full__right" />
-          <div className="section_background__inner">
-            <div className="section_background__inner_content">
-              <div
-                className="venue_floating_card"
-                style={{
-                  backgroundImage: `url(${currentVenue
-                    ? currentVenue.featuredImage.fields.file.url
-                    : null})`
-                }}>
-                >
-                <div className="venue_floating_card__inner">
-                  <h2>{currentVenue ? currentVenue.venueTitle : null}</h2>
+      <div id="VenueSpecific">
+        <div className="page-section">
+          <div className="section_background__full">
+            <div className="section_background__full__left" />
+            <div className="section_background__full__right" />
+            <div className="section_background__inner">
+              <div className="section_background__inner_content">
+                <div
+                  className="venue_floating_card"
+                  style={{
+                    backgroundImage: `url(${currentVenue
+                      ? currentVenue.featuredImage.fields.file.url
+                      : null})`
+                  }}>
+                  >
+                  <div className="venue_floating_card__inner">
+                    <h2>{currentVenue ? currentVenue.venueTitle : null}</h2>
+                  </div>
+                </div>
+                <div className="section_background__inner__text">
+                  <p>{currentVenue.venueBlueprintDetails}</p>
+                  <p>{currentVenue.venueDescription}</p>
                 </div>
               </div>
-              <div className="section_background__inner__text">
-                <p>{currentVenue.venueBluePrintDetails}</p>
-                <p>{currentVenue.venueDescription}</p>
+            </div>
+          </div>
+        </div>
+        <div className="section2 page-section">
+          <div className="section2 section_background__full">
+            <div className="section2 section_background__full__left" />
+            <div className="section2 section_background__full__right" />
+            <div className="section2 section_background__inner">
+              <div className="section2 section_background__inner_content">
+                <div
+                  className="section2 venue_floating_map_card"
+                  style={{
+                    backgroundImage: `url(${currentVenue
+                      ? currentVenue.featuredImage.fields.file.url
+                      : null})`
+                  }}>
+                  >
+                </div>
+                <div className="section2 section_background__inner__text">
+                  <p>{currentVenue.venueBlueprintDetails}</p>
+                  <p>{currentVenue.venueDescription}</p>
+                </div>
               </div>
             </div>
           </div>
