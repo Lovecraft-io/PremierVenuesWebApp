@@ -67,6 +67,7 @@ export default class EventForm extends Component {
       let inquiry = this.formatInquiry(infoData)
       this.sendToSlack(inquiry)
     }
+    console.log(infoData)
     this.runSearch(infoData)
   }
   formatInquiry(data) {
@@ -89,10 +90,10 @@ export default class EventForm extends Component {
     })
   }
   runSearch(searchData) {
+    console.log(searchData)
     const {venues} = AppStore.data
-    console.log(venues)
     console.log(searchData.location)
-    const searcher = new FuzzySearch(venues, ['venue.city, venue.venueDescription', 'city', 'venueTitle'], {
+    const searcher = new FuzzySearch(venues, ['venue.city', 'city', 'venueTitle'], {
       caseSensitive: false,
       sort: true
     })

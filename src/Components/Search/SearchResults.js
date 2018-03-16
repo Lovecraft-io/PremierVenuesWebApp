@@ -15,7 +15,10 @@ export default class SearchResults extends Component {
         <section>
           <Search event={searchParameters.event} location={searchParameters.location} number={searchParameters.number} when={searchParameters.when}/>
         </section>
-        {searchResults.map(venue => <ContentPreviewCard venue={venue} />)}
+        {searchResults.length > 0 
+        ? searchResults.map(venue => <ContentPreviewCard venue={venue} />)
+        : <h2>Sorry, There are currently no venues that match your search</h2>
+        }
       </div>
     )
   }
