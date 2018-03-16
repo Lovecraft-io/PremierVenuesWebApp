@@ -141,39 +141,6 @@ export default class About extends Component {
                 <Icon name="mail" />
                 Email
               </Menu.Item>
-              <Menu.Item>
-                <Dropdown text="Menu" pointing className="link item">
-                  <Dropdown.Menu>
-                    <Dropdown.Item>
-                      <i className="dropdown icon" />
-                      <span className="text">Venues</span>
-                      <Dropdown.Menu>
-                        {venues.map(venue => (
-                          <Dropdown.Item>
-                            <Link to={`/venues/${venue.venueTitle}`}>
-                              {venue.venueTitle}
-                            </Link>
-                          </Dropdown.Item>
-                        ))}
-                      </Dropdown.Menu>
-                    </Dropdown.Item>
-                    <Dropdown.Item>
-                      <i className="dropdown icon" />
-                      <span className="text">Destinations</span>
-                      <Dropdown.Menu>
-                        {destinations.map(destination => (
-                          <Dropdown.Item>
-                            <Link
-                              to={`/destinations/${destination.destinationName}`}>
-                              {destination.destinationName}
-                            </Link>
-                          </Dropdown.Item>
-                        ))}
-                      </Dropdown.Menu>
-                    </Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-              </Menu.Item>
             </Menu>
           </div>
           <section>

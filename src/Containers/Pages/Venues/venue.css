@@ -298,6 +298,27 @@ hr {
   
 }
 
+.section2.section_background__inner__text {
+  position: absolute;
+  width: 30vw;
+  text-align: justify;
+  bottom: 6em;
+  right: 50px;
+  color: #333!important;
+  z-index: 2000;
+  padding: 40px;
+  background: #fff;
+  line-height: 28px;
+  font-size: 16px;
+  letter-spacing: 2px;
+  font-weight: 200;
+  border-right: 5px solid #233357;
+}
+
+.section2.section_background__inner__text h2 {
+
+}
+
 .section2.venue_floating_map_card {
   height: 80vh;
   position: relative;

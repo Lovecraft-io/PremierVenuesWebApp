@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import AppDispatcher from '../../../Flux/Dispatchers/AppDispatcher'
 import AppStore from '../../../Flux/Stores/AppStore'
 import VenueMap from '../../Maps/VenueMap'
-import {BlogPostPreview} from '../Blog/BlogPostPreview'
+import { BlogPostPreview } from '../Blog/BlogPostPreview'
 import _ from 'lodash'
 import './venue.css'
 
@@ -41,6 +41,10 @@ export default class VenueSpecific extends Component {
     const { data } = AppStore
     const { currentVenue } = data
     console.log(currentVenue)
+    const { currentUser } = data
+    const proContent = currentUser ? (
+      <div>{currentVenue.exclusiveMemberContent}</div>
+    ) : null
     return (
       <div id="VenueSpecific">
         <div className="page-section">
@@ -79,7 +83,8 @@ export default class VenueSpecific extends Component {
                   <VenueMap venue={currentVenue} />
                 </div>
                 <div className="section2 section_background__inner__text">
-                <p>Map</p>
+                  <h2>Become a Premium Member!</h2>
+                  <div className="pro-content">{proContent}</div>
                 </div>
               </div>
             </div>
@@ -105,9 +110,11 @@ export default class VenueSpecific extends Component {
                 </div>
                 <div className="section3 section_background__inner__text">
                   <div className="venueRelatedNews">
-                    {currentVenue.venueRelatedNews.map((post) => (
-                        <BlogPostPreview blogPost={post} />
-                    ))}
+                    {currentVenue.venueRelatedNews
+                      ? currentVenue.venueRelatedNews.map(post => (
+                          <BlogPostPreview blogPost={post} />
+                        ))
+                      : null}
                   </div>
                 </div>
               </div>
