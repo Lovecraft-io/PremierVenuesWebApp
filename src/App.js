@@ -16,32 +16,32 @@ class App extends Component {
     super(props)
     this.state = {}
     this.handleLinkedinAuth = this.handleLinkedinAuth.bind(this)
+    this.logOut = this.logOut.bind(this)
   }
 
   componentDidMount() {
-    // window.Intercom("boot", {
-    //   app_id: "epird752"
-    // })
     AppStore.addChangeListener(this._onChange.bind(this))
   }
   componentWillUnmount() {
     AppStore.removeChangeListener(this._onChange.bind(this))
   }
   getStore(user=false) {
-    if(!user) {
-      AppDispatcher.dispatch({
-        action: 'get-app-store'
-      })
-    }
     AppDispatcher.dispatch({
-      action: 'get-app-store',
-      user: user
+      action: 'get-app-store'
+    })
+  }
+  setCurrentUser(user) {
+    AppDispatcher.dispatch({
+      action: 'set-current-user',
+      currentUser: user
     })
   }
   componentWillMount() {
     const user = localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')) : false
     console.log(user)
-    this.getStore(user)
+    if(user) {
+      this.setCurrentUser(user)
+    }
   }
   _onChange() {
     this.setState(AppStore)
@@ -49,6 +49,9 @@ class App extends Component {
   handleLinkedinAuth() {
     AppDispatcher.dispatch({action: 'handle-linkedin-auth'})
   } 
+  logOut() {
+    AppDispatcher.dispatch({action: 'log-out-user'})
+  }
 
   render() {
     const { data } = AppStore
@@ -62,9 +65,9 @@ class App extends Component {
       return (
         <BrowserRouter {...data}>
           <div id="App">
-            <SiteMenu loggedIn={loggedIn} handleLinkedinAuth={this.handleLinkedinAuth} venues={venues} destinations={destinations} links={siteNav} />
+            <SiteMenu loggedIn={loggedIn} handleLogOut={this.logOut} handleLinkedinAuth={this.handleLinkedinAuth} venues={venues} destinations={destinations} links={siteNav} />
             {routes}
-            <Footer loggedIn={loggedIn} handleLinkedinAuth={this.handleLinkedinAuth} venues={venues} destinations={destinations} links={siteNav} />
+            <Footer loggedIn={loggedIn} handleLogOut={this.logOut} handleLinkedinAuth={this.handleLinkedinAuth} venues={venues} destinations={destinations} links={siteNav} />
           </div>
         </BrowserRouter>
       )

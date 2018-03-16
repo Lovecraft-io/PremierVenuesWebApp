@@ -102,6 +102,14 @@ const createUser = async profile => {
   }
 }
 
+export const logOutUser = () => {
+  auth.logout()
+  AppStore.data.currentUser = false
+  AppStore.emitChange()
+  
+  return <Redirect to="/" />
+}
+
 export const handleLinkedinAuth = () => {
   console.log('in Actions #handleLinkedinAuth')
   auth.login()

@@ -1,21 +1,6 @@
 import React, { Component } from 'react'
 import AppDispatcher from '../../../Flux/Dispatchers/AppDispatcher'
 import AppStore from '../../../Flux/Stores/AppStore'
-import {
-  Button,
-  Container,
-  Divider,
-  Grid,
-  Header,
-  Icon,
-  Image,
-  List,
-  Menu,
-  Responsive,
-  Segment,
-  Sidebar,
-  Visibility
-} from 'semantic-ui-react'
 import _ from 'lodash'
 import './venue.css'
 
@@ -54,46 +39,29 @@ export default class VenueSpecific extends Component {
     const { data } = AppStore
     const { currentVenue } = data
     return (
-      <div id="VenueSpecific">
-        <Container
-          fluid
-          style={{
-            backgroundImage: `url(${currentVenue
-              ? currentVenue.featuredImage.fields.file.url
-              : null})`
-          }}>
-          <Header
-            as="h1"
-            content={currentVenue ? currentVenue.venueTitle : null}
-            inverted
-            style={{
-              fontSize: '4em',
-              fontWeight: 'normal',
-              height: '500px',
-              textAlign: 'center',
-              paddingTop: '2em'
-            }}
-          />
-        </Container>
-        <div className="venue_specific_main">
-          <div className="venue_specific_content">
-            <div className="venue_specific_date">
-              <span>April</span>
-              <span className="venue_specific_day">6</span>
+      <div id="VenueSpecific" className="page-section">
+        <div className="section_background__full">
+          <div className="section_background__full__left" />
+          <div className="section_background__full__right" />
+          <div className="section_background__inner">
+            <div className="section_background__inner_content">
+              <div
+                className="venue_floating_card"
+                style={{
+                  backgroundImage: `url(${currentVenue
+                    ? currentVenue.featuredImage.fields.file.url
+                    : null})`
+                }}>
+                >
+                <div className="venue_floating_card__inner">
+                  <h2>{currentVenue ? currentVenue.venueTitle : null}</h2>
+                </div>
+              </div>
+              <div className="section_background__inner__text">
+                <p>{currentVenue.venueBluePrintDetails}</p>
+                <p>{currentVenue.venueDescription}</p>
+              </div>
             </div>
-            <div className="venue_specific_article">
-              <h2><span>{currentVenue ? currentVenue.venueTitle : null}</span></h2>
-      
-              <p className="venue_specific_firstpara">
-                <span className="venue_specific_firstcharacter"></span>
-                {currentVenue.venueBluePrintDetails}
-              </p>
-              <p>
-                {currentVenue.venueDescription}
-              </p>
-          
-            </div>
-
           </div>
         </div>
       </div>

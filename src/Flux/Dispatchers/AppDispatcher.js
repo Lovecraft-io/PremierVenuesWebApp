@@ -8,7 +8,9 @@ import {
   getDestinationData,
   getVenueData,
   getBlogPostData,
-  addSearchResults
+  setCurrentUser,
+  addSearchResults,
+  logOutUser
 } from '../Actions/Actions'
 
 const AppDispatcher = new Dispatcher()
@@ -47,6 +49,14 @@ AppDispatcher.register(payload => {
 
     case 'create-user-linkedin':
       createUserWithLinkedIn({ ...payload.data })
+      break
+
+    case 'set-current-user':
+      setCurrentUser(payload.currentUser)
+      break
+
+    case 'log-out-user':
+      logOutUser()
       break
 
     case 'add-search-results':

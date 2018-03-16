@@ -7,11 +7,15 @@ import './maps.css'
 
 export default class DestinationsMap extends Component {
   state = {
-    lat: 40,
-    lng: -74.006,
-    zoom: 3
+    lat: 51.505,
+    lng: -0.09,
+    zoom: 4,
   }
-
+  handleZoomControl = (e) => {
+    console.log(e)
+    e.preventDefault()
+    e.stopPropagation()
+  }
   render() {
     const position = [this.state.lat, this.state.lng]
     const { destinations } = AppStore.data
@@ -35,7 +39,7 @@ export default class DestinationsMap extends Component {
     console.log(destinationMarkers)
     return (
       <div className="map-container" id="DestinationsMap">
-        <Map center={position} zoom={this.state.zoom}>
+        <Map center={position} zoom={this.state.zoom} onSCroll={this.handleZoomControl} zoomControl={false}>
           <TileLayer
             attribution="&copy; <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> &copy; <a href='http://cartodb.com/attributions'>CartoDB</a>"
             url="https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png"
