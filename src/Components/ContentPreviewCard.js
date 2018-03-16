@@ -1,5 +1,6 @@
 import React from 'react'
 import { Icon, List } from 'semantic-ui-react'
+import AppDispatcher from '../Flux/Dispatchers/AppDispatcher'
 import { Link } from 'react-router-dom'
 import {CONSTANTS} from '../constants'
 
@@ -9,6 +10,13 @@ export const ContentPreviewCard = props => {
   let _venue = venue.fields ? { ...venue.fields } : venue
   console.log(venue)
   console.log(_venue)
+
+  const bookMarkThisVenue = () => {
+    AppDispatcher.dispatch({
+      action: 'bookmark-venue',
+      venue: _venue
+    })
+  }
 
   return (
     <div className="ContentPreviewCard__card">
@@ -34,7 +42,7 @@ export const ContentPreviewCard = props => {
           <List.Item>
             <Icon name="share" />
           </List.Item>
-          <List.Item>
+          <List.Item onClick={() => bookMarkThisVenue()}>
             <Icon name="bookmark outline" />
           </List.Item>
           <List.Item>

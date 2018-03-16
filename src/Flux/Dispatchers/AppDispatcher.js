@@ -10,7 +10,8 @@ import {
   getBlogPostData,
   setCurrentUser,
   addSearchResults,
-  logOutUser
+  logOutUser,
+  bookMarkThisVenue
 } from '../Actions/Actions'
 
 const AppDispatcher = new Dispatcher()
@@ -61,6 +62,10 @@ AppDispatcher.register(payload => {
 
     case 'add-search-results':
       addSearchResults(payload.data)
+      break
+
+    case 'bookmark-venue':
+      bookMarkThisVenue(payload.venue)
       break
 
     default:

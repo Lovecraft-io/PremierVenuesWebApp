@@ -144,6 +144,15 @@ export const authenticateAccessToken = () => {
   }
 }
 
+export const bookMarkThisVenue = (venue) => {
+  console.log(venue)
+  const {currentUser} = AppStore.data 
+  if(currentUser && venue) {
+    DATABASE_FUNCTIONS.saveVenue(venue, currentUser)
+  }
+
+}
+
 export const addSearchResults = (data) => {
   const {searchResults, searchParameters } = data
   console.log(searchResults)

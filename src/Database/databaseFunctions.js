@@ -3,6 +3,7 @@ import uuidv4 from 'uuid/v4'
 import _ from 'lodash'
 const usersRef = Firebase.database().ref('users/')
 const userRef = id => Firebase.database().ref(`users/${id}`)
+// const userVenuesRef = id => Firebase().ref(`users/${id}/venues`)
 
 export const DATABASE_FUNCTIONS = {
   addNewUser: async userData => {
@@ -36,5 +37,21 @@ export const DATABASE_FUNCTIONS = {
     })
     console.log(existingUser)
     return existingUser
+  },
+  saveVenue: async (venue, user) => {
+    console.log(venue, user)
+    let findUser = await usersRef.once('value', snapshot => {
+      snapshot.forEach(childSnap => {
+        console.log(childSnap.val())
+        let databaseUser = childSnap.val()
+        if (databaseUser && (databaseUser.email === user.email)) {
+          console.log(databaseUser)
+          userRef(databaseUser.id).child('venues').push(venue)
+
+        }
+      })
+      return findUser
+    })
+
   }
 }
