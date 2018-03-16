@@ -183,6 +183,8 @@ a:visited {
   margin-left: 590px;
   margin-right: 20px;
   padding-top: 70px;
+  position: relative;
+  z-index: 2;
 }
 .ContentPreviewCard__card .bottom {
   position: absolute;
