@@ -3,6 +3,7 @@ import AppDispatcher from '../../../Flux/Dispatchers/AppDispatcher'
 import AppStore from '../../../Flux/Stores/AppStore'
 import VenueMap from '../../Maps/VenueMap'
 import { BlogPostPreview } from '../Blog/BlogPostPreview'
+import ReactMarkdown from 'react-markdown'
 import _ from 'lodash'
 import './venue.css'
 
@@ -84,7 +85,9 @@ export default class VenueSpecific extends Component {
                 </div>
                 <div className="section2 section_background__inner__text">
                   <h2>Become a Premium Member!</h2>
-                  <div className="pro-content">{proContent}</div>
+                  
+                  <ReactMarkdown source={currentVenue.venueArchitectureAndDesign ? currentVenue.venueArchitectureAndDesign : null} className="at-a-glance" />
+                  <ReactMarkdown source={proContent} className="pro-content" />
                 </div>
               </div>
             </div>

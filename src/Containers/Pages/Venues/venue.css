@@ -314,6 +314,9 @@ hr {
   font-weight: 200;
   border-right: 5px solid #233357;
 }
+.section2.section_background__inner__text p, .at-a-glance p {
+  color: #333!important;
+}
 
 .section2.section_background__inner__text h2 {
 
