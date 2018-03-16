@@ -297,3 +297,17 @@ hr {
   background: none;
   
 }
+
+.section2.venue_floating_map_card {
+  height: 80vh;
+  position: relative;
+  width: 70vw;
+  display: block;
+  margin: auto;
+}
+#VenueMap {
+  height: 100%;
+}
+#VenueMap .leaflet-container {
+  height: 100%;
+}

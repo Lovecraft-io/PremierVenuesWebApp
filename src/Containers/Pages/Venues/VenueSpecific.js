@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import AppDispatcher from '../../../Flux/Dispatchers/AppDispatcher'
 import AppStore from '../../../Flux/Stores/AppStore'
+import VenueMap from '../../Maps/VenueMap'
+import {BlogPostPreview} from '../Blog/BlogPostPreview'
 import _ from 'lodash'
 import './venue.css'
 
@@ -38,6 +40,7 @@ export default class VenueSpecific extends Component {
   render() {
     const { data } = AppStore
     const { currentVenue } = data
+    console.log(currentVenue)
     return (
       <div id="VenueSpecific">
         <div className="page-section">
@@ -72,18 +75,40 @@ export default class VenueSpecific extends Component {
             <div className="section2 section_background__full__right" />
             <div className="section2 section_background__inner">
               <div className="section2 section_background__inner_content">
+                <div className="section2 venue_floating_map_card">
+                  <VenueMap venue={currentVenue} />
+                </div>
+                <div className="section2 section_background__inner__text">
+                <p>Map</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="section3 page-section">
+          <div className="section3 section_background__full">
+            <div className="section3 section_background__full__left" />
+            <div className="section3 section_background__full__right" />
+            <div className="section3 section_background__inner">
+              <div className="section3 section_background__inner_content">
                 <div
-                  className="section2 venue_floating_map_card"
+                  className="section3 venue_floating_card"
                   style={{
                     backgroundImage: `url(${currentVenue
                       ? currentVenue.featuredImage.fields.file.url
                       : null})`
                   }}>
                   >
+                  <div className="section3 venue_floating_card__inner">
+                    <h2>{currentVenue ? currentVenue.venueTitle : null}</h2>
+                  </div>
                 </div>
-                <div className="section2 section_background__inner__text">
-                  <p>{currentVenue.venueBlueprintDetails}</p>
-                  <p>{currentVenue.venueDescription}</p>
+                <div className="section3 section_background__inner__text">
+                  <div className="venueRelatedNews">
+                    {currentVenue.venueRelatedNews.map((post) => (
+                        <BlogPostPreview blogPost={post} />
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>

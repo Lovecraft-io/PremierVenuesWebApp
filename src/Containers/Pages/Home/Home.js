@@ -37,7 +37,7 @@ export default class Home extends Component {
     const {Home} = AppStore.data.pages
     let carousel = _.find(Home.modules, (mod) => mod.fields.type === 'Carousel')
     carousel = {...carousel.fields}
-    console.log(carousel)
+    console.log(Home)
     return (
       <div id="Home" className="">
         <section className="page-section">
