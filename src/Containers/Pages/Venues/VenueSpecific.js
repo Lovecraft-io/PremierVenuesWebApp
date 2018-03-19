@@ -115,7 +115,9 @@ export default class VenueSpecific extends Component {
                   <div className="venueRelatedNews">
                     {currentVenue.venueRelatedNews
                       ? currentVenue.venueRelatedNews.map(post => (
-                          <BlogPostPreview blogPost={post} />
+                        post.fields && post.fields.blogPostFeaturedImage && post.fields.blogPostFeaturedImage.length > 0 
+                        ? <BlogPostPreview blogPost={post} />
+                        : null
                         ))
                       : null}
                   </div>
