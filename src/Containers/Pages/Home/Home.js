@@ -22,9 +22,6 @@ export default class Home extends Component {
       history.push('/search/results')
     }
   }
-  componentDidMount() {
-    // this.greetReturningUser()
-  }
   greetReturningUser() {
     const { currentUser } = AppStore.data
     return currentUser && currentUser.loggedIn
@@ -35,16 +32,16 @@ export default class Home extends Component {
   render() {
     const { venues, destinations } = AppStore.data
     const { Home } = AppStore.data.pages
-    let carousel = _.find(Home.modules, mod => mod.fields.type === 'Carousel')
-    carousel = { ...carousel.fields }
-    const featuredPosts = []
-    Home.modules.forEach(module => {
-      if (Object.keys(module.fields).includes('blogPostTitle')) {
-        featuredPosts.push({ ...module.fields })
-      }
-    })
-    console.log(featuredPosts)
+    const {blogPosts} = Home
+    const carousel = _.find(Home.sections, (section) => section.fields.type === 'Carousel')
     console.log(Home)
+    console.log(carousel)
+    const {carouselSlides} = carousel.fields
+    // const carouselSection = {...Home.sections.find(section => section.fields.type  === 'Carousel').fields}
+    // const {carouselSlides} = carouselSection.children[0].fields
+    // let blogPosts = [] 
+    // Home.sections.forEach((section) => section.fields.type === 'Blog Posts' ? section.fields.children.forEach((childArray) => blogPosts = blogPosts.concat(childArray)) : false)
+
     return (
       <div id="Home" className="">
         <section className="page-section">
@@ -52,14 +49,14 @@ export default class Home extends Component {
           <EventForm venues={venues} destinations={destinations} />
         </section>
         <section className="page-section">
-          <Carousel slides={carousel.carouselSlides} />
+          <Carousel slides={carouselSlides} />
         </section>
         <section className="page-section">
           <DestinationsMap />
         </section>
         <section className="page-section">
           <div className="blog-section">
-            {featuredPosts.map(post => (
+            {blogPosts.map(post => (
               <div
                 className="home-card"
                 style={{

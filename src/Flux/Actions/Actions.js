@@ -16,12 +16,7 @@ export const getStore = () => {
   })
   CMS.getEntries().then(response => {
     const { items } = response
-    console.log(items)
-    const pages = _.filter(
-      items,
-      item => item.sys.contentType.sys.id == 'page'
-    ).map(page => (page = { ...page.fields }))
-
+    
     const blogPosts = _.filter(
       items,
       item => item.sys.contentType.sys.id == 'blogPost'
@@ -35,9 +30,14 @@ export const getStore = () => {
     const sortedPosts = blogPosts.sort((a, b) => {
       return moment.utc(a.createdAt).diff(moment.utc(b.createdAt))
     })
-    // pages.forEach((page) => page.modules ? page.modules.map(module => {...module.fields}) : page = page)
 
-    console.log(pages)
+    const pages = _.filter(
+      items,
+      item => item.sys.contentType.sys.id == 'page'
+    ).map(page => (page = { ...page.fields }))
+
+    const addPostsToPage = (page, blogPosts) => page.pageSlug == 'Home' ? page.blogPosts = blogPosts.filter((post) => post.tags.includes('Featured')) : page.blogPosts = blogPosts.filter((post) => post.tags.includes(page.slug))
+    pages.forEach((page) => addPostsToPage(page, blogPosts))
     
     const venues = _.filter(
       items,
@@ -63,8 +63,6 @@ export const getStore = () => {
     AppStore.data.destinations = destinations
     AppStore.data.blogPosts = sortedPosts
     AppStore.data.ready = true
-    console.log(AppStore.data)
-
     AppStore.emitChange()
   })
 }

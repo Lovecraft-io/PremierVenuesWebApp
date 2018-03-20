@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import AppStore from '../Flux/Stores/AppStore'
 const { data } = AppStore
 const { currentUser } = data
-
+console.log(currentUser)
 const logInOrOutButton = props =>
   props.loggedIn ? (
     <Menu.Item>
@@ -53,12 +53,8 @@ const renderNavItems = (link, venues, destinations) => {
     return dropDownMenu('Venues', venues)
   } else if (link === 'Destinations') {
     return dropDownMenu('Destinations', destinations)
-  } else if (link === 'Account' && (currentUser && currentUser.loggedIn)) {
-    return (
-      <Menu.Item>
-        <Link to={'/' + encodeURI(link.toLowerCase())}>{link}</Link>
-      </Menu.Item>
-    )
+  } else if (link === 'Account' && currentUser === undefined) {
+    return 
   } else {
     return (
       <Menu.Item>
