@@ -2,8 +2,8 @@ import React, {Component} from 'react'
 import _ from 'lodash'
 import Axios from 'axios'
 import FuzzySearch from 'fuzzy-search'
-import AppStore from '../Flux/Stores/AppStore'
-import AppDispatcher from '../Flux/Dispatchers/AppDispatcher'
+import AppStore from '../../Flux/Stores/AppStore'
+import AppDispatcher from '../../Flux/Dispatchers/AppDispatcher'
 
 export default class EventForm extends Component {
   constructor(props) {
@@ -118,6 +118,7 @@ export default class EventForm extends Component {
   }
   render() {
     const {venues, destinations} = this.props
+    console.log(this.props)
     const people = _.range(1, 20)
     const selectPeople = () => people.map((number) => <option value={number}>{number}</option>)
     const venueOptions = () => venues.map((venue) => <option value={venue.venueName}>{venue.venueName}</option>)

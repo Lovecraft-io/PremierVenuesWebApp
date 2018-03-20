@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
 import {Link} from 'react-router-dom'
 import AppStore from '../../Flux/Stores/AppStore'
+import ReactMarkdown from 'react-markdown'
 import { Card, Image, Segment, Feed } from 'semantic-ui-react'
 import './maps.css'
 
@@ -26,6 +27,13 @@ export default class DestinationsMap extends Component {
   render() {
     const position = [this.state.lat, this.state.lng]
     const { destinations } = AppStore.data
+    const {content} = this.props 
+    const contentHTML = content ? 
+    <div className="map_text">
+      <ReactMarkdown source={content} />
+    </div>
+    : null
+
     const destinationMarkers = destinations.map(destination => (
       <Marker
         position={[
@@ -51,6 +59,7 @@ export default class DestinationsMap extends Component {
             attribution="&copy; <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> &copy; <a href='http://cartodb.com/attributions'>CartoDB</a>"
             url="https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png"
           />
+          {contentHTML}
           {destinations.map(destination => {
             const markerPos = [
               destination.destinationLocation.lat,

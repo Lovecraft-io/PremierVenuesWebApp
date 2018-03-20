@@ -2,6 +2,7 @@ import React from 'react'
 import Video from 'react-video-cover'
 
 export const VideoBackground = (props) => (
+  props.background.includes('video') ?
   <div className="videoBg">
     <video
     autoPlay={true}
@@ -11,7 +12,11 @@ export const VideoBackground = (props) => (
         width: '100%',
         height: '100%',
       }}
-      src="/bokeh.webm"
+      src={props.background}
     />
+  </div>
+  : 
+  <div className="imageBg">
+    <img src={props.background} />
   </div>
 )

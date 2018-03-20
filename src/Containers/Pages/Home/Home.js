@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import AppDispatcher from '../../../Flux/Dispatchers/AppDispatcher'
 import AppStore from '../../../Flux/Stores/AppStore'
 import { Carousel } from '../../../Components/Carousel'
-import EventForm from '../../../Components/EventForm'
+import EventForm from '../../../Components/Search/EventForm'
 import { VideoBackground } from './VideoBackground'
 import { Link } from 'react-router-dom'
 import { CONSTANTS } from '../../../constants'
@@ -33,26 +33,27 @@ export default class Home extends Component {
     const { venues, destinations } = AppStore.data
     const { Home } = AppStore.data.pages
     const {blogPosts} = Home
-    const carousel = _.find(Home.sections, (section) => section.fields.type === 'Carousel')
+    const {sections} = Home
+    const carousel = _.find(sections, (section) => section.fields.type === 'Carousel')
+    const searchForm = _.find(sections, (section) => section.fields.type === 'Search Form')
+    const map = _.find(sections, (section) => section.fields.type === 'Map')
     console.log(Home)
     console.log(carousel)
     const {carouselSlides} = carousel.fields
-    // const carouselSection = {...Home.sections.find(section => section.fields.type  === 'Carousel').fields}
-    // const {carouselSlides} = carouselSection.children[0].fields
-    // let blogPosts = [] 
-    // Home.sections.forEach((section) => section.fields.type === 'Blog Posts' ? section.fields.children.forEach((childArray) => blogPosts = blogPosts.concat(childArray)) : false)
+
+    
 
     return (
       <div id="Home" className="">
         <section className="page-section">
-          <VideoBackground />
-          <EventForm venues={venues} destinations={destinations} />
+          <VideoBackground background={searchForm.fields.backgroundImage.fields.file.url} />
+          <EventForm venues={venues} destinations={destinations} searchForm={searchForm}/>
         </section>
         <section className="page-section">
           <Carousel slides={carouselSlides} />
         </section>
         <section className="page-section">
-          <DestinationsMap />
+          <DestinationsMap content={map.fields.content} />
         </section>
         <section className="page-section">
           <div className="blog-section">
