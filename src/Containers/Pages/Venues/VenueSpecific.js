@@ -18,14 +18,6 @@ export default class VenueSpecific extends Component {
     console.log(venueName)
     this.getVenueData(venueName)
   }
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   if(this.props.match.params.venueName !== nextProps.match.params.venueName) {
-  //     return true
-  //   } else {
-  //     return false
-  //   }
-
-  // }
   componentDidUpdate(prevProps, prevState) {
     console.log(prevProps)
     console.log(this.props)
@@ -67,7 +59,7 @@ export default class VenueSpecific extends Component {
                   </div>
                 </div>
                 <div className="section_background__inner__text">
-                  <p>{currentVenue.venueBlueprintDetails}</p>
+                  <p>{currentVenue.venueFeatures}</p>
                   <p>{currentVenue.venueDescription}</p>
                 </div>
               </div>
@@ -85,9 +77,6 @@ export default class VenueSpecific extends Component {
                 </div>
                 <div className="section2 section_background__inner__text">
                   <h2>Become a Premium Member!</h2>
-                  
-                  <ReactMarkdown source={currentVenue.venueArchitectureAndDesign ? currentVenue.venueArchitectureAndDesign : null} className="at-a-glance" />
-                  <ReactMarkdown source={proContent} className="pro-content" />
                 </div>
               </div>
             </div>
@@ -113,8 +102,8 @@ export default class VenueSpecific extends Component {
                 </div>
                 <div className="section3 section_background__inner__text">
                   <div className="venueRelatedNews">
-                    {currentVenue.venueRelatedNews
-                      ? currentVenue.venueRelatedNews.map(post => (
+                    {currentVenue.blogPosts
+                      ? currentVenue.blogPosts.map(post => (
                         post.fields && post.fields.blogPostFeaturedImage && post.fields.blogPostFeaturedImage.length > 0 
                         ? <BlogPostPreview blogPost={post} />
                         : null

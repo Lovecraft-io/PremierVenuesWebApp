@@ -34,7 +34,7 @@ export const ContentPreviewCard = props => {
         </Link>
         <div className="ContentPreviewCard__separator" />
         <p>
-          <span>{CONSTANTS.trim(_venue.venueBlueprintDetails)}</span>
+          <span>{CONSTANTS.trim(_venue.venueFeatures)}</span>
           <br />
           <span>{CONSTANTS.trim(_venue.venueDescription)}</span>
         </p>

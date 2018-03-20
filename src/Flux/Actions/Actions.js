@@ -15,7 +15,11 @@ export const getStore = () => {
     accessToken: process.env.REACT_APP_CONTENTFUL_ACCESS_TOKEN
   })
   CMS.getEntries().then(response => {
+    const addPostsToPage = (page, blogPosts) => page.pageSlug == 'Home' ? page.blogPosts = blogPosts.filter((post) => post.tags.includes('Featured')) : page.blogPosts = blogPosts.filter((post) => post.tags.includes(page.slug))
+    const addPostsToVenue = (venue, blogPosts) => venue.blogPosts = blogPosts.filter((post) => post.tags.includes(venue.venueTitle))
+    const addPostsToDestination = (destination, blogPosts) => destination.blogPosts = blogPosts.filter((post) => post.tags.includes(destination.destinationName))
     const { items } = response
+    const siteNav = []
     
     const blogPosts = _.filter(
       items,
@@ -35,10 +39,7 @@ export const getStore = () => {
       items,
       item => item.sys.contentType.sys.id == 'page'
     ).map(page => (page = { ...page.fields }))
-
-    const addPostsToPage = (page, blogPosts) => page.pageSlug == 'Home' ? page.blogPosts = blogPosts.filter((post) => post.tags.includes('Featured')) : page.blogPosts = blogPosts.filter((post) => post.tags.includes(page.slug))
-    pages.forEach((page) => addPostsToPage(page, blogPosts))
-    
+ 
     const venues = _.filter(
       items,
       item => item.sys.contentType.sys.id == 'venue'
@@ -49,13 +50,15 @@ export const getStore = () => {
       item => item.sys.contentType.sys.id == 'destination'
     ).map(destination => (destination = { ...destination.fields }))
     
-    let siteNav = []
+    
+    pages.forEach((page) => addPostsToPage(page, blogPosts))
+    venues.forEach((venue) => addPostsToVenue(venue, blogPosts))
+    destinations.forEach((destination) => addPostsToDestination(destination, blogPosts))
     pages.forEach(page => {
       if (page.pageTitle !== 'Landing Page') {
         siteNav.push(page.pageTitle.split(' ')[0])
       }
     })
-
     AppStore.data.siteNav = siteNav
     AppStore.data.pages = {}
     pages.forEach(page => (AppStore.data.pages[page.pageSlug] = page))
