@@ -50,7 +50,6 @@ export const getStore = () => {
       item => item.sys.contentType.sys.id == 'destination'
     ).map(destination => (destination = { ...destination.fields }))
     
-    
     pages.forEach((page) => addPostsToPage(page, blogPosts))
     venues.forEach((venue) => addPostsToVenue(venue, blogPosts))
     destinations.forEach((destination) => addPostsToDestination(destination, blogPosts))
