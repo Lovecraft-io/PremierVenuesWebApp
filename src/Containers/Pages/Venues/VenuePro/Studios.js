@@ -149,7 +149,7 @@ _renderVideo(item) {
 render() {
   return (
 
-    <section className='app'>
+    <section className='studio'>
       <ImageGallery
         ref={i => this._imageGallery = i}
         items={this.images}
@@ -171,7 +171,7 @@ render() {
         slideDuration={parseInt(this.state.slideDuration)}
         slideInterval={parseInt(this.state.slideInterval)}
         slideOnThumbnailHover={this.state.slideOnThumbnailHover}
-        additionalClass="app-image-gallery"
+        additionalClass="studio_image_gallery"
       />
     </section>
   );
