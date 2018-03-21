@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ReactMarkdown from 'react-markdown'
+import Studios from './Studios'
 
 class Quote extends Component {
   render() {
@@ -7,14 +8,11 @@ class Quote extends Component {
   }
 }
 export const VENUE_PRO_SECTIONS = {
-  overview: props => <ReactMarkdown className="overview" source={props.overview} />,
-  studios: props => (
-    <div className="Studios">
-      {props.studios.map(studio => <h3>{studio.name}</h3>)}
-    </div>
+  overview: props => (
+    <ReactMarkdown className="overview" source={props.overview} />
   ),
+  studios: props => <Studios studios= {props.studios}/>,
   services: props => <ReactMarkdown className="services" source={props.services} />,
   design: props => <ReactMarkdown className="design" source={props.content} />,
-  quote: (props) => <Quote {...props.quote} />
-
+  quote: props => <Quote {...props.quote} />
 }
