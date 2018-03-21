@@ -352,6 +352,6 @@ hr {
 .section3.venue_pro .venue_floating_card::after {
   display: none;
 }
-.venue_pro_content_inner {
+.section3.venue_pro.venue_floating_card__inner .venue_pro_content_inner {
   padding-top: 30px;
 }
