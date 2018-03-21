@@ -32,16 +32,17 @@ export default class VenuePro extends Component {
   render() {
     const { currentVenue, currentUser } = this.props
     const { activeItem } = this.state
-    console.log(activeItem)
     let venuePro = _.find(
       currentVenue.sections,
       section => section.sys.contentType.sys.id === 'venuePro'
     )
     venuePro = {...venuePro.fields}
+
+
     const venueProSections = Object.keys(venuePro)
     const toggleActiveSection = (venuePro) => VENUE_PRO_SECTIONS[activeItem](venuePro)
     const activeSection = toggleActiveSection(venuePro)
-    console.log(activeSection)
+    
     
     return (
       <div className="section3 venue_pro section_background__full">

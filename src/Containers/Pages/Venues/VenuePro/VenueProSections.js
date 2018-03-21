@@ -7,14 +7,14 @@ class Quote extends Component {
   }
 }
 export const VENUE_PRO_SECTIONS = {
-  overview: props => <ReactMarkdown source={props.overview} />,
+  overview: props => <ReactMarkdown className="overview" source={props.overview} />,
   studios: props => (
     <div className="Studios">
       {props.studios.map(studio => <h3>{studio.name}</h3>)}
     </div>
   ),
-  services: props => <ReactMarkdown source={props.services} />,
-  design: props => <ReactMarkdown source={props.content} />,
+  services: props => <ReactMarkdown className="services" source={props.services} />,
+  design: props => <ReactMarkdown className="design" source={props.content} />,
   quote: (props) => <Quote {...props.quote} />
 
 }
