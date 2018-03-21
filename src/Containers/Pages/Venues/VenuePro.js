@@ -71,9 +71,9 @@ export default class VenuePro extends Component {
                 </Grid.Column>
               </Grid>
             </div>
-          </div>
-          <div className="section3 venue_pro section_background__inner__text">
-            <div className="venueRelatedNews" />
+            <div id="image_gallery_modal__destination">
+
+            </div>
           </div>
         </div>
       </div>

@@ -66,7 +66,7 @@ class App extends Component {
       return (
         <BrowserRouter {...data}>
           <div id="App">
-            <SiteMenu loggedIn={loggedIn} handleLogOut={this.logOut} handleLinkedinAuth={this.handleLinkedinAuth} venues={venues} destinations={destinations} links={siteNav} />
+            <SiteMenu currentUser={currentUser} handleLogOut={this.logOut} handleLinkedinAuth={this.handleLinkedinAuth} venues={venues} destinations={destinations} links={siteNav} />
             {routes}
             <Footer loggedIn={loggedIn} handleLogOut={this.logOut} handleLinkedinAuth={this.handleLinkedinAuth} venues={venues} destinations={destinations} links={siteNav} />
           </div>

@@ -1,9 +1,11 @@
 import React, {Component} from 'react'
-
+import '../pages.css'
 export default class Account extends Component {
   render() {
     return (
-      <div>Account</div>
+      <section className="page-section">
+      Account
+    </section>
     )
   }
 }

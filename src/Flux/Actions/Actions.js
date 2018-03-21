@@ -67,7 +67,7 @@ export const getStore = () => {
       addPostsToDestination(destination, blogPosts)
     )
 
-    const siteNav = _.sortBy(pages, (page) => page.navigationOrder).map((page) => page.pageTitle !== 'Landing Page' ? page.pageTitle.split(' ')[0] : page.pageSlug)
+    const siteNav = _.sortBy(pages, (page) => page.navigationOrder).map((page) => (page.pageTitle !== 'Landing Page' && page.pageTitle !== 'Home') ? page.pageTitle.split(' ')[0] : page.pageSlug)
     console.log(siteNav)
 
     AppStore.data.siteNav = siteNav

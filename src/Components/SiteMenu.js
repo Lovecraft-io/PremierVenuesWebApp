@@ -1,12 +1,9 @@
-import React, { Component } from 'react'
-import { Menu, Image, Dropdown } from 'semantic-ui-react'
+import React from 'react'
+import { Menu, Dropdown } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
-import AppStore from '../Flux/Stores/AppStore'
-const { data } = AppStore
-const { currentUser } = data
-console.log(currentUser)
+
 const logInOrOutButton = props =>
-  props.loggedIn ? (
+  props.currentUser ? (
     <Menu.Item>
       <span onClick={() => props.handleLogOut()}>Log Out</span>
     </Menu.Item>
@@ -16,7 +13,7 @@ const logInOrOutButton = props =>
     </Menu.Item>
   )
 const signUpButton = props =>
-  props.loggedIn ? null : (
+  props.currentUser ? null : (
     <Menu.Item>
       <span onClick={() => props.handleLinkedinAuth()}>Sign Up</span>
     </Menu.Item>
@@ -48,12 +45,12 @@ const dropDownMenu = (title, links) => (
     </Dropdown.Menu>
   </Dropdown>
 )
-const renderNavItems = (link, venues, destinations) => {
+const renderNavItems = (link, venues, destinations, currentUser) => {
   if (link === 'Venues') {
     return dropDownMenu('Venues', venues)
   } else if (link === 'Destinations') {
     return dropDownMenu('Destinations', destinations)
-  } else if (link === 'Account' && currentUser === undefined) {
+  } else if (link === 'Account' && !currentUser) {
     return 
   } else {
     return (
@@ -67,7 +64,7 @@ const renderNavItems = (link, venues, destinations) => {
 export const SiteMenu = props => {
   console.log(props.links)
   const nav = props.links.map(link =>
-    renderNavItems(link, props.venues, props.destinations)
+    renderNavItems(link, props.venues, props.destinations, props.currentUser)
   )
 
   return (

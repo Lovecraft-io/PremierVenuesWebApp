@@ -254,6 +254,17 @@ hr {
   color: white;
 
 }
+.venue_floating_card__inner .ui.horizontal.list {
+  position: absolute;
+  width: 100%;
+  bottom: 20px;
+  left:0;
+  z-index: 2000;
+}
+.venue_floating_card__inner .ui.horizontal.list .item, .venue_floating_card__inner .ui.horizontal.list .item i {
+  color: white!important;
+  cursor: pointer;
+}
 .section_background__inner__text {
   position: absolute;
   width: 30vw;
@@ -341,26 +352,44 @@ hr {
 
 }
 .section3.venue_pro .venue_floating_card {
-  padding: 30px 0;
+  /* padding: 30px 0 0; */
   height: 100vh;
-  width: 55vw;
-  background: #fff;
+  width: 100%;
+  display: flex;
 }
 .section3.venue_pro.venue_floating_card__inner {
+  height: 100%;
+  width: 55vw;
+  
+}
+
+.section3.venue_pro #image_gallery_modal__destination {
+  height: 100%;
+  width: 45vw;
+  background-image: -webkit-linear-gradient(65deg, #111722, #233357, #233357, #233357);
+  background-image: -o-linear-gradient(65deg, #111722, #233357, #233357, #233357);
+  background-image: linear-gradient(25deg, #111722, #233357, #233357, #233357);
+}
+.section3.venue_pro.venue_floating_card__inner  .ui.grid {
+  margin: 0;
   height: 100%;
 }
 .section3.venue_pro.venue_floating_card__inner .ui.grid>.column:not(.row), .ui.grid>.row>.column {
   padding-left: 0;
 }
 .section3.venue_pro.venue_floating_card__inner .ui.grid>* {
-  padding-left: 0;
+  padding: 0;
 }
 .section3.venue_pro .venue_floating_card::after {
   display: none;
 }
 .section3.venue_pro.venue_floating_card__inner .venue_pro_content_inner {
-  padding-top: 30px;
+  padding: 30px 10px 0;
   padding-right: 1rem;
+  height: 100%;
+  overflow-y: scroll;
+  background: white;
+  
 }
 .section3.venue_pro.venue_floating_card__inner .venue_pro_content_inner .overview p {
   padding-top: 10px;
@@ -390,21 +419,21 @@ hr {
     display: flex;
     flex-direction: row-reverse;
     margin-bottom: 10px;
-    font-size: 16px;
+    font-size: 14px;
+    text-align: left;    
     letter-spacing: 1px;
     font-weight: 300;
 }
 .section3.venue_pro.venue_floating_card__inner .venue_pro_content_inner .services ul li img {
   object-fit: cover;
   object-position: center;
-  width: 200px;
-  height: 200px;
+  min-width: 200px;
+  width: 100%;
+  min-height: 100px;
+  height: 100%;
+  margin-right: 5px;
 }
 
-.section3.venue_pro.venue_floating_card__inner .venue_pro_content_inner .Studios .image-gallery-image {
-  width: 300px;
-  height: 300px;
-}
 .section3.venue_pro.venue_floating_card__inner .venue_pro_content_inner .Studios .image-gallery-image img {
   width: 100%;
   height: 100%;

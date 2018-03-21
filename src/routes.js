@@ -78,7 +78,7 @@ const routesArray = [
     component: SearchResults
   },
   {
-    path: '/account/:id',
+    path: '/account',
     exact: true,
     component: Account
   }

@@ -25,7 +25,7 @@ class Studio extends Component {
 
   this.images = this.props.studio.fields.gallery.fields.images.map(image => {
     return {
-      original: image.fields.file.url,
+      original: image.fields.file.url + '?fit=fill&w=600&h=400',
       thumbnail: image.fields.file.url + '?fit=thumb&w=150&h=150'
     }
   })
