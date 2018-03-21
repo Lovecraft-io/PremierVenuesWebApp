@@ -335,3 +335,23 @@ hr {
 #VenueMap .leaflet-container {
   height: 100%;
 }
+
+/* VENUE PRO */
+.section3.venue_pro {
+
+}
+.section3.venue_pro .venue_floating_card {
+  padding: 30px 0;
+  height: 100vh;
+  width: 55vw;
+  background: #fff;
+}
+.section3.venue_pro.venue_floating_card__inner {
+  height: 100%;
+}
+.section3.venue_pro .venue_floating_card::after {
+  display: none;
+}
+.venue_pro_content_inner {
+  padding-top: 30px;
+}

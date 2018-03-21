@@ -3,6 +3,7 @@ import AppDispatcher from '../../../Flux/Dispatchers/AppDispatcher'
 import AppStore from '../../../Flux/Stores/AppStore'
 import VenueMap from '../../Maps/VenueMap'
 import { BlogPostPreview } from '../Blog/BlogPostPreview'
+import VenuePro from './VenuePro'
 import ReactMarkdown from 'react-markdown'
 import _ from 'lodash'
 import './venue.css'
@@ -35,9 +36,50 @@ export default class VenueSpecific extends Component {
     const { currentVenue } = data
     console.log(currentVenue)
     const { currentUser } = data
-    const proContent = currentUser ? (
-      <div>{currentVenue.exclusiveMemberContent}</div>
-    ) : null
+    const VenueStandard = props => (
+      <div className="section3 venue_standard section_background__full">
+        <div className="section3 venue_standard section_background__full__left" />
+        <div className="section3 venue_standard section_background__full__right" />
+        <div className="section3 venue_standard section_background__inner">
+          <div className="section3 venue_standard section_background__inner_content">
+            <div
+              className="section3 venue_standard venue_floating_card"
+              style={{
+                backgroundImage: `url(${props.currentVenue
+                  ? props.currentVenue.featuredImage.fields.file.url
+                  : null})`
+              }}>
+              >
+              <div className="section3 venue_standard venue_floating_card__inner">
+                <h2>{props.currentVenue ? props.currentVenue.venueTitle : null}</h2>
+              </div>
+            </div>
+            <div className="section3 venue_standard section_background__inner__text">
+              <div className="venueRelatedNews">
+                {props.currentVenue.blogPosts
+                  ? props.currentVenue.blogPosts.map(
+                      post =>
+                        post.fields &&
+                        post.fields.blogPostFeaturedImage &&
+                        post.fields.blogPostFeaturedImage.length > 0 ? (
+                          <BlogPostPreview blogPost={post} />
+                        ) : null
+                    )
+                  : null}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+
+    const ToggleVenuePro = () =>
+      currentUser ? (
+        <VenuePro currentUser={currentUser} currentVenue={currentVenue} />
+      ) : (
+        <VenueStandard currentVenue={currentVenue} />
+      )
+
     return (
       <div id="VenueSpecific">
         <div className="page-section">
@@ -83,37 +125,7 @@ export default class VenueSpecific extends Component {
           </div>
         </div>
         <div className="section3 page-section">
-          <div className="section3 section_background__full">
-            <div className="section3 section_background__full__left" />
-            <div className="section3 section_background__full__right" />
-            <div className="section3 section_background__inner">
-              <div className="section3 section_background__inner_content">
-                <div
-                  className="section3 venue_floating_card"
-                  style={{
-                    backgroundImage: `url(${currentVenue
-                      ? currentVenue.featuredImage.fields.file.url
-                      : null})`
-                  }}>
-                  >
-                  <div className="section3 venue_floating_card__inner">
-                    <h2>{currentVenue ? currentVenue.venueTitle : null}</h2>
-                  </div>
-                </div>
-                <div className="section3 section_background__inner__text">
-                  <div className="venueRelatedNews">
-                    {currentVenue.blogPosts
-                      ? currentVenue.blogPosts.map(post => (
-                        post.fields && post.fields.blogPostFeaturedImage && post.fields.blogPostFeaturedImage.length > 0 
-                        ? <BlogPostPreview blogPost={post} />
-                        : null
-                        ))
-                      : null}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          {ToggleVenuePro()}
         </div>
       </div>
     )
