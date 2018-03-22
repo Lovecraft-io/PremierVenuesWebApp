@@ -47,15 +47,17 @@ export default class DestinationSpecific extends Component {
   render() {
     const { currentDestination } = AppStore.data
     const { destination } = this.props.match.params
-    const { destinationVenues } = currentDestination
+    console.log(currentDestination)
+    const destinationVenues = currentDestination.destinationVenues.filter(
+      venue => venue.fields
+    )
     const venuesList =
-      currentDestination.destinationVenues &&
-      currentDestination.destinationVenues.length > 0
-        ? destinationVenues.map(venue => (
+      destinationVenues.length > 0 ? 
+      destinationVenues.map(venue => (
             <ContentPreviewCard venue={venue} city={destination} />
           ))
         : null
-    console.log(currentDestination)
+    
     return (
       <div
         id="DestinationSpecific"

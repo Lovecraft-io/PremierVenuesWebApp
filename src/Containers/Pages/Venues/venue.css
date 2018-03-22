@@ -265,6 +265,13 @@ hr {
   color: white!important;
   cursor: pointer;
 }
+i.circular.icon {
+  border-color: white!important;
+  -webkit-box-shadow: 0 0 0 0.1em inset;
+  border-color: white;
+  box-shadow: 0 0 0 0.1em inset;
+
+}
 .section_background__inner__text {
   position: absolute;
   width: 30vw;

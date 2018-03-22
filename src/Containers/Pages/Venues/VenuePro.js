@@ -33,8 +33,9 @@ export default class VenuePro extends Component {
     const { activeItem } = this.state
     console.log(activeItem)
     let {venuePro} = currentVenue
-    console.log(venuePro)
     venuePro = {...venuePro.fields}
+    const venueProSections = Object.keys(venuePro).filter((key) => key !== 'type')
+    console.log(venuePro)
     const toggleActiveSection = (venuePro) => VENUE_PRO_SECTIONS[activeItem](venuePro)
     const activeSection = toggleActiveSection(venuePro)
     
