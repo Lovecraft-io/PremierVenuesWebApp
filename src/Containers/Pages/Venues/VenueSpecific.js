@@ -61,16 +61,11 @@ export default class VenueSpecific extends Component {
     const { data } = AppStore
     const { venueSuccessfullyAdded } = data
     console.log(data)
-    const { currentVenue } = data
+    const { currentVenue, currentUser } = data
     console.log(currentVenue)
-    const { currentUser } = data
-    let _CTA = _.find(
-      currentVenue.sections,
-      section => section.sys.contentType.sys.id === 'form'
-    )
-    const CTA = _CTA ? { ..._CTA.fields } : null
-    console.log(CTA)
-
+    let {form, map, venuePro} = currentVenue
+    // [form, map, venuePro].map((obj) => obj = {...obj.fields})
+    
     const BookMarkOptions = currentUser ? (
       <List horizontal>
         <Popup
@@ -83,7 +78,6 @@ export default class VenueSpecific extends Component {
           hoverable>
           <Segment padded>
             <Header as="h4">Bookmark this venue</Header>
-
             {venueSuccessfullyAdded ? (
               <p>You've bookmarked this venue</p>
             ) : (
@@ -131,11 +125,11 @@ export default class VenueSpecific extends Component {
     const ToggleCTA = () =>
       currentUser ? null : (
         <div className="section2 section_background__inner__text">
-          <ReactMarkdown source={CTA.ctaContent} />
+          <ReactMarkdown source={form.ctaContent} />
           <div>
             <Form onSubmit={this.handleSubmit}>
               <Form.Group widths="equal">
-                {CTA ? CTA.fields.map(field => (
+                {form ? form.map(field => (
                   <Form.Input
                     fluid
                     label={field}

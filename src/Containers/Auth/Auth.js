@@ -44,7 +44,6 @@ export default class Auth {
     AppDispatcher.dispatch({
       action: 'authenticate-access-token'
     })
-    // return authResult
   }
   getAccessToken() {
     const accessToken = localStorage.getItem('access_token')

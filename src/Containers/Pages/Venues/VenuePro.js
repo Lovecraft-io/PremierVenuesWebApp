@@ -14,12 +14,11 @@ export default class VenuePro extends Component {
       currentVenue = JSON.parse(localStorage.getItem('currentVenue'))
     }
     if (currentVenue) {
-      let venuePro = _.find(
-        currentVenue.sections,
-        section => section.sys.contentType.sys.id === 'venuePro'
-      )
+      let {venuePro} = currentVenue
       venuePro = {...venuePro.fields}
-      const venueProSections = Object.keys(venuePro)
+      let keys = Object.keys(venuePro)
+      const venueProSections = Object.keys(venuePro).filter((key) => key !== 'type')
+      console.log(venueProSections)
       this.setState({
         activeItem: venueProSections[0]
       })
@@ -32,14 +31,10 @@ export default class VenuePro extends Component {
   render() {
     const { currentVenue, currentUser } = this.props
     const { activeItem } = this.state
-    let venuePro = _.find(
-      currentVenue.sections,
-      section => section.sys.contentType.sys.id === 'venuePro'
-    )
+    console.log(activeItem)
+    let {venuePro} = currentVenue
+    console.log(venuePro)
     venuePro = {...venuePro.fields}
-
-
-    const venueProSections = Object.keys(venuePro)
     const toggleActiveSection = (venuePro) => VENUE_PRO_SECTIONS[activeItem](venuePro)
     const activeSection = toggleActiveSection(venuePro)
     

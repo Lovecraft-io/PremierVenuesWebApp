@@ -16,6 +16,7 @@ export const getStore = () => {
   })
   CMS.getEntries().then(response => {
     const { items } = response
+    console.log(items)
     const addPostsToPage = (page, blogPosts) =>
       page.pageSlug == 'Home'
         ? (page.blogPosts = blogPosts.filter(post =>
@@ -72,9 +73,9 @@ export const getStore = () => {
       addPostsToDestination(destination, blogPosts)
     )
 
-    const siteNav = _.sortBy(pages, (page) => page.navigationOrder).map((page) => (page.pageTitle !== 'Landing Page' && page.pageSlug !== 'Home') ? page.pageTitle.split(' ')[0] : false)
-    console.log(siteNav)
-
+    let siteNav = _.filter(pages, (page) => page.pageSlug != 'Home')
+    siteNav = _.sortBy(siteNav, (page) => page.navigationOrder).map((page) => page.pageSlug)
+    
     AppStore.data.siteNav = siteNav
     AppStore.data.pages = {}
     pages.forEach(page => (AppStore.data.pages[page.pageSlug] = page))
