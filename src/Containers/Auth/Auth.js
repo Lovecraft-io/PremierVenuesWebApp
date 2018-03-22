@@ -5,7 +5,7 @@ export default class Auth {
   auth0 = new auth0.WebAuth({
     domain: 'monichre.auth0.com',
     clientID: 'FHeDEC5yAG20lpS6Bx6FJyR3Z2fSfFGE',
-    redirectUri: 'http://localhost:3000/callback',
+    redirectUri: process.env.NODE_ENV === 'development' ? 'http://localhost:3000/callback' : 'https://premiervenues.netlify.com/',
     audience: 'https://monichre.auth0.com/userinfo',
     responseType: 'token id_token',
     scope: 'openid profile email'

@@ -42,10 +42,11 @@ export const getStore = () => {
       return formattedBlogPost
     })
 
-    const sortedPosts = blogPosts.sort((a, b) => {
+    let sortedPosts = blogPosts.sort((a, b) => {
       return moment.utc(a.createdAt).diff(moment.utc(b.createdAt))
     })
-
+    sortedPosts.map((post) => post.createdAt = moment(post.createdAt).format('MMM-DDD-YYYY'))
+    
     const pages = _.filter(
       items,
       item => item.sys.contentType.sys.id == 'page'
@@ -54,8 +55,12 @@ export const getStore = () => {
     const venues = _.filter(
       items,
       item => item.sys.contentType.sys.id == 'venue'
-    ).map(venue => (venue = { ...venue.fields }))
-
+    ).map(venue => {
+      let formattedVenue = { ...venue.fields }
+      formattedVenue.id = venue.sys.id
+      return formattedVenue
+    })
+    
     const destinations = _.filter(
       items,
       item => item.sys.contentType.sys.id == 'destination'
@@ -67,7 +72,7 @@ export const getStore = () => {
       addPostsToDestination(destination, blogPosts)
     )
 
-    const siteNav = _.sortBy(pages, (page) => page.navigationOrder).map((page) => (page.pageTitle !== 'Landing Page' && page.pageTitle !== 'Home') ? page.pageTitle.split(' ')[0] : page.pageSlug)
+    const siteNav = _.sortBy(pages, (page) => page.navigationOrder).map((page) => (page.pageTitle !== 'Landing Page' && page.pageSlug !== 'Home') ? page.pageTitle.split(' ')[0] : false)
     console.log(siteNav)
 
     AppStore.data.siteNav = siteNav
@@ -144,7 +149,7 @@ export const authenticateAccessToken = () => {
       if (!existingUser) {
         createUser(profile)
       } else {
-        AppStore.data.currentUser = { ...profile }
+        AppStore.data.currentUser = { ...existingUser }
         AppStore.data.currentUser.loggedIn = true
         AppStore.emitChange()
         localStorage.setItem(
@@ -161,12 +166,22 @@ export const authenticateAccessToken = () => {
   }
 }
 
-export const bookMarkThisVenue = venue => {
-  console.log(venue)
+export const bookMarkThisVenue = currentVenue => {
+  console.log(currentVenue)
   const { currentUser } = AppStore.data
-  if (currentUser && venue) {
-    DATABASE_FUNCTIONS.saveVenue(venue, currentUser)
+  if (currentUser && currentVenue) {
+    currentUser.venues.forEach(async (venue) => {
+      if(venue.id === currentVenue.id) {
+        AppStore.data.venueAlreadySaved = true
+        AppStore.emitChange()
+      } else {
+        let savedUser = await DATABASE_FUNCTIONS.saveVenue(venue, currentUser)
+        console.log(savedUser)
+      }
+    })
   }
+  AppStore.data.venueSuccessfullyAdded = true
+  AppStore.emitChange()
 }
 
 export const addSearchResults = data => {

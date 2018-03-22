@@ -3,7 +3,15 @@ import AppDispatcher from '../../../Flux/Dispatchers/AppDispatcher'
 import AppStore from '../../../Flux/Stores/AppStore'
 import VenueMap from '../../Maps/VenueMap'
 import { BlogPostPreview } from '../Blog/BlogPostPreview'
-import { Form, Icon, List  } from 'semantic-ui-react'
+import {
+  Form,
+  Icon,
+  List,
+  Header,
+  Button,
+  Popup,
+  Segment
+} from 'semantic-ui-react'
 
 import VenuePro from './VenuePro'
 import ReactMarkdown from 'react-markdown'
@@ -51,27 +59,41 @@ export default class VenueSpecific extends Component {
 
   render() {
     const { data } = AppStore
+    const { venueSuccessfullyAdded } = data
+    console.log(data)
     const { currentVenue } = data
     console.log(currentVenue)
     const { currentUser } = data
-    let CTA = _.find(
+    let _CTA = _.find(
       currentVenue.sections,
       section => section.sys.contentType.sys.id === 'form'
     )
-    CTA = { ...CTA.fields }
+    const CTA = _CTA ? { ..._CTA.fields } : null
     console.log(CTA)
 
     const BookMarkOptions = currentUser ? (
       <List horizontal>
-        <List.Item>
-          <Icon size='large' circular color='white' name="share" />
-        </List.Item>
-        <List.Item onClick={this.bookMarkThisVenue}>
-          <Icon size='large' circular color='white' name="bookmark outline" />
-        </List.Item>
-        <List.Item>
-          <Icon size='large' circular color='white' name="info" />
-        </List.Item>
+        <Popup
+          trigger={
+            <List.Item>
+              <Icon size="large" circular color="white" name="add" />
+            </List.Item>
+          }
+          flowing
+          hoverable>
+          <Segment padded>
+            <Header as="h4">Bookmark this venue</Header>
+
+            {venueSuccessfullyAdded ? (
+              <p>You've bookmarked this venue</p>
+            ) : (
+              <div>
+                <p>Bookmark this venue for later</p>
+                <Button onClick={this.bookMarkThisVenue}>Save</Button>
+              </div>
+            )}
+          </Segment>
+        </Popup>
       </List>
     ) : null
 
@@ -113,7 +135,7 @@ export default class VenueSpecific extends Component {
           <div>
             <Form onSubmit={this.handleSubmit}>
               <Form.Group widths="equal">
-                {CTA.fields.map(field => (
+                {CTA ? CTA.fields.map(field => (
                   <Form.Input
                     fluid
                     label={field}
@@ -122,7 +144,7 @@ export default class VenueSpecific extends Component {
                       field === 'Name' ? this.handleFirstName : this.handleEmail
                     }
                   />
-                ))}
+                )) : null }
               </Form.Group>
               <Form.Button>Submit</Form.Button>
             </Form>

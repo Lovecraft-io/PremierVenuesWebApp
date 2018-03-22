@@ -11,6 +11,7 @@ export const DATABASE_FUNCTIONS = {
     let status = false
     if (user) {
       user.id = uuidv4()
+      user.venues=[]
       status = await userRef(user.id).set({ ...user }, (err, data) => {
         if (err) {
           console.log(err)
@@ -19,18 +20,18 @@ export const DATABASE_FUNCTIONS = {
         console.log('User successfully added to database')
         status = true
       })
-      return status
+      return status ? user : false
     }
   },
 
   checkForExistingUser: async incomingUser => {
-    let existingUser = false
+    let existingUser
     let possibleUser = await usersRef.once('value', snapshot => {
       snapshot.forEach(childSnap => {
         console.log(childSnap.val())
         let databaseUser = childSnap.val()
         if (databaseUser && (databaseUser.email === incomingUser.email)) {
-          existingUser = true
+          existingUser = databaseUser
         }
       })
       return existingUser
@@ -47,11 +48,9 @@ export const DATABASE_FUNCTIONS = {
         if (databaseUser && (databaseUser.email === user.email)) {
           console.log(databaseUser)
           userRef(databaseUser.id).child('venues').push(venue)
-
         }
       })
-      return findUser
     })
-
+    return findUser
   }
 }
