@@ -37,8 +37,8 @@ export default class DestinationsMap extends Component {
     const destinationMarkers = destinations.map(destination => (
       <Marker
         position={[
-          destination.destinationLocation.lat,
-          -destination.destinationLocation.lon
+          destination.map.fields.location.lat,
+          destination.map.fields.location.lon
         ]}>
         <Popup>
           <Card>
@@ -67,8 +67,8 @@ export default class DestinationsMap extends Component {
           {contentHTML}
           {destinations.map(destination => {
             const markerPos = [
-              destination.destinationLocation.lat,
-              destination.destinationLocation.lon
+              destination.map.fields.location.lat,
+              destination.map.fields.location.lon
             ]
             const destinationVenues = destination.destinationVenues.filter(
               venue => venue.fields

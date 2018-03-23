@@ -13,9 +13,10 @@ export default class VenueMap extends Component {
   }
   componentWillMount() {
     const { venue } = this.props
+    console.log(venue)
     this.setState({
-      lat: venue.venueLocation.lat,
-      lng: venue.venueLocation.lon
+      lat: venue.map.fields.location.lat,
+      lng: venue.map.fields.location.lon
     })
   }
   componentDidMount() {
