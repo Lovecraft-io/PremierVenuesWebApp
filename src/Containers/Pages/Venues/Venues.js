@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Grid, Image, Segment } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
+import { CONSTANTS } from '../../../constants'
 import './venue.css'
 export default class Venues extends Component {
   render() {
@@ -13,9 +14,7 @@ export default class Venues extends Component {
           <div
             className="venue-card"
             style={{
-              backgroundImage: `url(${venue.featuredImage
-                ? venue.featuredImage.fields.file.url
-                : null})`
+              backgroundImage: `url(${venue.featuredImage.fields.file.url})`
             }}>
             <div className="title-content">
               <h3>
@@ -26,7 +25,7 @@ export default class Venues extends Component {
               <hr />
             </div>
             <div className="card-info">
-              <ReactMarkdown source={venue.venueDescription} />
+              <ReactMarkdown source={CONSTANTS.trim(venue.venueDescription)} />
             </div>
             <div className="utility-info">
               <ul className="utility-list">

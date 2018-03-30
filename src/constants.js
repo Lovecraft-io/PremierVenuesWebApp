@@ -2,7 +2,7 @@
 
 export const CONSTANTS = {
     trim: (str) => {
-        if (str.length > 600) {
+        if (str.length > 400) {
             let array = str.split('')
             str = array.splice(0, 200)
             str.push('...')

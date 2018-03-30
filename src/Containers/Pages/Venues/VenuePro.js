@@ -5,7 +5,10 @@ import _ from 'lodash'
 
 export default class VenuePro extends Component {
 
-  state = { activeItem: '' }
+  state = { 
+    activeItem: '',
+    modalRoot: {}
+ }
 
   componentWillMount() {
     let { currentVenue, currentUser } = this.props
@@ -27,16 +30,24 @@ export default class VenuePro extends Component {
       window.location = '/'
     }
   }
+  componentDidMount() {
+    const modalRoot = document.getElementById('image_gallery_modal__destination')
+    this.setState({
+      modalRoot: modalRoot
+    })
+  }
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+
   render() {
     const { currentVenue, currentUser } = this.props
-    const { activeItem } = this.state
-    console.log(activeItem)
+    const { activeItem, modalRoot } = this.state
     let {venuePro} = currentVenue
     venuePro = {...venuePro.fields}
+
     const venueProSections = Object.keys(venuePro).filter((key) => key !== 'type')
     console.log(venuePro)
-    const toggleActiveSection = (venuePro) => VENUE_PRO_SECTIONS[activeItem](venuePro)
+    console.log(modalRoot)
+    const toggleActiveSection = (venuePro) => VENUE_PRO_SECTIONS[activeItem](venuePro, modalRoot)
     const activeSection = toggleActiveSection(venuePro)
     
     

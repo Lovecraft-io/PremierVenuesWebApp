@@ -372,6 +372,7 @@ i.circular.icon {
 
 .section3.venue_pro #image_gallery_modal__destination {
   height: 100%;
+  padding-top: 50px;  
   width: 45vw;
   background-image: -webkit-linear-gradient(65deg, #111722, #233357, #233357, #233357);
   background-image: -o-linear-gradient(65deg, #111722, #233357, #233357, #233357);
@@ -446,4 +447,42 @@ i.circular.icon {
   height: 100%;
   object-fit: cover;
   object-position: center;
+}
+
+.Studios .segment .studio {
+  color: #333;
+}
+.Studios .segment .studio h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: #333;
+}
+
+.Studios .segment .studio .specs table {
+  width: 100%;
+  margin-top: 20px;
+}
+.Studios .segment .studio .specs table th {
+  padding: 20px;
+  color: white;
+  background: black;
+}
+.Studios .segment .studio .specs table td {
+  padding: 20px;
+}
+.Studios .segment .studio .download {
+  background: black;
+  padding: 20px 40px;
+  width: max-content;
+  color: white;
+  margin: 10px auto;
+}
+
+.Studios .segment .studio .media {
+  width: 100%;
+}
+.Studios .segment .studio .media img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
 }
